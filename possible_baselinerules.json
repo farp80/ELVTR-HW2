@@ -1,0 +1,50 @@
+{
+  "train_rows": 20749,
+  "majority_department": "technical support",
+  "departments": [
+    "product support",
+    "customer service",
+    "it support"
+  ],
+  "rules": [
+    {
+      "department": "product support",
+      "type": "word",
+      "description": "If the word 'engagement' is in the body, return the department product support",
+      "rationale": "Fixes 328 product-support tickets and breaks 729 technical-support tickets, for a gain of 165.",
+      "phrase": "engagement",
+      "in_class": 328,
+      "out_of_class": 729,
+      "majority_hits": 163,
+      "gain": 165,
+      "precision": 0.31031220435193946,
+      "coverage": 0.050942214082606393
+    },
+    {
+      "department": "customer service",
+      "type": "word",
+      "description": "If the word 'learning' is in the body, return the department customer service",
+      "rationale": "Fixes 272 product-support tickets and breaks 734 technical-support tickets, for a gain of 96.",
+      "phrase": "learning",
+      "in_class": 272,
+      "out_of_class": 734,
+      "majority_hits": 176,
+      "gain": 96,
+      "precision": 0.27037773359840955,
+      "coverage": 0.048484264301894064
+    },
+    {
+      "department": "it support",
+      "type": "word",
+      "description": "If the word 'inaccessibility' is in the body, return the department it support",
+      "rationale": "Fixes 6 product-support tickets and breaks 1 technical-support tickets, for a gain of 6.",
+      "phrase": "inaccessibility",
+      "in_class": 6,
+      "out_of_class": 1,
+      "majority_hits": 0,
+      "gain": 6,
+      "precision": 0.8571428571428571,
+      "coverage": 0.00033736565617620127
+    }
+  ]
+}
