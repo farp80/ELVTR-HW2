@@ -24,8 +24,10 @@ from utils.shared import (
 )
 
 if __name__ == "__main__":
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]
+    HW2_ROOT = Path(__file__).resolve().parents[1]
     kwargs = {
-        "file_path": r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets.csv"
+        "file_path": HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets.csv"
     }
 
     logs = Logs(**kwargs)
@@ -159,6 +161,14 @@ if __name__ == "__main__":
     print(pandas_utils.df["tags"].iloc[0])
     pandas_utils.df["tags"] = pandas_utils.df["tags"].apply(normalize_tags)
     print(pandas_utils.df["tags"].iloc[0])
+    logs.log_decision(
+        issue="Tag parsing and normalization",
+        action="Parsed tag strings into lists and normalized tag casing and spacing",
+        reason="Tags are structured metadata and should be represented consistently for later analysis.",
+        affected_count=len(pandas_utils.df),
+        representative_ids=pandas_utils.df["ticket_id"].head(5).tolist(),
+        risk_or_limitation="Malformed tag strings could be parsed as empty lists, so this simple parser may lose unusual tag values.",
+    )
 
     # ------------ PII ------------------------------------
     print(steps_divider("4. Filter PII"))
@@ -183,7 +193,7 @@ if __name__ == "__main__":
         reason="PII should not be stored in the database.",
         affected_count=pii_mask.sum(),
         representative_ids=pii_ids,
-        risk_or_limitation="PII may be sensitive and should not be stored in the database.",
+        risk_or_limitation="Regex rules may miss identifiers in unexpected formats or falsely match ordinary text that looks like PII.",
     )
 
     body = pandas_utils.df["body"]
@@ -191,42 +201,56 @@ if __name__ == "__main__":
         {
             "issue": "HTML break tags",
             "pattern": r"<br\s*/?>",
+            "replacement": " ",
+            "action": "Replaced break tags with spaces",
             "reason": "Break tags are template markup and do not describe the customer's request.",
             "risk_or_limitation": "The pattern is limited to br so it does not delete other tags.",
         },
         {
             "issue": "Broken break markers",
             "pattern": r"<brWarm|brbr",
+            "replacement": None,
+            "action": "Repaired broken break markers",
             "reason": "These closings are a line break written without a finished br tag.",
             "risk_or_limitation": "Only the broken <brWarm tag and the doubled brbr run are matched.",
         },
         {
             "issue": "Missing space after sentence punctuation",
             "pattern": r"[.!?][A-Z]",
+            "replacement": None,
+            "action": "Inserted missing spaces after sentence punctuation",
             "reason": "Two sentences were concatenated, so the model sees one token instead of two.",
             "risk_or_limitation": "The next character must be a capital, so names such as Node.js stay intact.",
         },
         {
             "issue": "Missing space after a comma",
             "pattern": r",[A-Za-z]",
+            "replacement": None,
+            "action": "Inserted missing spaces after commas",
             "reason": "The comma is glued to the next word in openings and signature lines.",
             "risk_or_limitation": "The space is inserted at the first letter only, so nameacc_num stays one token.",
         },
         {
             "issue": "Curly single quotes",
             "pattern": r"[’‘]",
+            "replacement": "'",
+            "action": "Replaced curly single quotes with ASCII apostrophes",
             "reason": "A curly apostrophe and an ASCII apostrophe are the same word with two code points.",
             "risk_or_limitation": "The curly mark is treated as an apostrophe.",
         },
         {
             "issue": "Square-bracket template slots",
             "pattern": r"\[[^\]]+\]",
+            "replacement": "[PLACEHOLDER]",
+            "action": "Replaced square-bracket template slots with placeholders",
             "reason": "Bracketed slots such as [Your Name] are unfilled template fields.",
             "risk_or_limitation": "A broad bracket pattern also matches a JSON fragment that names a real product.",
         },
         {
             "issue": "Angle-bracket placeholders",
             "pattern": r"<[^>]+>",
+            "replacement": "[PLACEHOLDER]",
+            "action": "Replaced angle-bracket placeholders with placeholders",
             "reason": "Angle-bracket slots such as <tel_num> and <name> are redacted fields written as markup.",
             "risk_or_limitation": "This pattern also matches break tags, so those rows are counted here as well.",
         },
@@ -240,17 +264,38 @@ if __name__ == "__main__":
         if affected_count == 0:
             continue
 
-        action = "replace PII" if index == len(body_patterns) - 1 else "change"
         representative_ids = pandas_utils.df.loc[mask, "ticket_id"].head(5).tolist()
 
-        if item["issue"] == "Square-bracket template slots":
-            pandas_utils.df["body"] = pandas_utils.df["body"].str.replace(
-                item["pattern"], "[PLACEHOLDER]", regex=True
+        if item["issue"] == "Broken break markers":
+            pandas_utils.df["body"] = (
+                pandas_utils.df["body"]
+                .str.replace(r"<brWarm", " Warm", regex=True)
+                .str.replace(r"brbr", " ", regex=True)
             )
+        elif item["issue"] == "Missing space after sentence punctuation":
+            pandas_utils.df["body"] = pandas_utils.df["body"].str.replace(
+                r"([.!?])(?=[A-Z])", r"\1 ", regex=True
+            )
+        elif item["issue"] == "Missing space after a comma":
+            pandas_utils.df["body"] = pandas_utils.df["body"].str.replace(
+                r",(?=[A-Za-z])", ", ", regex=True
+            )
+        elif item["issue"] == "Curly single quotes":
+            pandas_utils.df["body"] = (
+                pandas_utils.df["body"]
+                .str.replace(r"[’‘]", "'", regex=True)
+                .str.replace("�", "'", regex=False)
+            )
+        else:
+            pandas_utils.df["body"] = pandas_utils.df["body"].str.replace(
+                item["pattern"], item["replacement"], regex=True
+            )
+
+        pandas_utils.df["body"] = pandas_utils.df["body"].apply(clean_whitespace)
 
         logs.log_decision(
             issue=item["issue"],
-            action=action,
+            action=item["action"],
             reason=item["reason"],
             affected_count=affected_count,
             representative_ids=representative_ids,
@@ -262,7 +307,7 @@ if __name__ == "__main__":
 
     df_cleaned_dataset = pandas_utils.df.copy()
     df_cleaned_dataset.to_csv(
-        r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv",
+        PROJECT_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv",
         index=False,
     )
 
@@ -277,7 +322,5 @@ if __name__ == "__main__":
 
     write_findings(
         logs.logs,
-        Path(
-            r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - cleaning_log_findings.md"
-        ),
+        Path(__file__).with_name("Fidel Alejandro Rosell Perez - cleaning_log_findings.md"),
     )

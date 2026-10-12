@@ -7,14 +7,15 @@
 | Inconsistent whitespace in ticket text | Normalized repeated whitespace, tabs, line breaks, and leading/trailing spaces | 47 |
 | Unicode normalization issue in ticket text | Normalized Unicode characters to their standard form | 1 |
 | Inconsistent department formatting | Trimmed whitespace and normalized casing | 29650 |
+| Tag parsing and normalization | Parsed tag strings into lists and normalized tag casing and spacing | 29650 |
 | PII found in ticket text | Filtered PII | 22 |
-| HTML break tags | change | 652 |
-| Broken break markers | change | 19 |
-| Missing space after sentence punctuation | change | 1830 |
-| Missing space after a comma | change | 1912 |
-| Curly single quotes | change | 71 |
-| Square-bracket template slots | change | 949 |
-| Angle-bracket placeholders | replace PII | 987 |
+| HTML break tags | Replaced break tags with spaces | 652 |
+| Broken break markers | Repaired broken break markers | 19 |
+| Missing space after sentence punctuation | Inserted missing spaces after sentence punctuation | 1830 |
+| Missing space after a comma | Inserted missing spaces after commas | 1912 |
+| Curly single quotes | Replaced curly single quotes with ASCII apostrophes | 71 |
+| Square-bracket template slots | Replaced square-bracket template slots with placeholders | 949 |
+| Angle-bracket placeholders | Replaced angle-bracket placeholders with placeholders | 987 |
 
 ## 1. Inconsistent column name formatting
 
@@ -86,7 +87,21 @@
 
 **Risk.** Changing casing is safe for categorical normalization, but semantically different labels must not be merged without domain evidence.
 
-## 6. PII found in ticket text
+## 6. Tag parsing and normalization
+
+**What the issue was.** Tag parsing and normalization
+
+**Why it is an issue.** Tags are structured metadata and should be represented consistently for later analysis.
+
+**How it was addressed.** Parsed tag strings into lists and normalized tag casing and spacing
+
+**Records affected.** 29650
+
+**Representative ticket ids.** 1, 2, 3, 4, 5
+
+**Risk.** Malformed tag strings could be parsed as empty lists, so this simple parser may lose unusual tag values.
+
+## 7. PII found in ticket text
 
 **What the issue was.** PII found in ticket text
 
@@ -98,15 +113,15 @@
 
 **Representative ticket ids.** 10995, 28268, 28301, 28521, 28548, 28603, 28641, 28709, 28784, 28800, 28803, 28954, 28971, 29085, 29139, 29174, 29237, 29366, 29433, 29458, 29630, 29644
 
-**Risk.** PII may be sensitive and should not be stored in the database.
+**Risk.** Regex rules may miss identifiers in unexpected formats or falsely match ordinary text that looks like PII.
 
-## 7. HTML break tags
+## 8. HTML break tags
 
 **What the issue was.** HTML break tags
 
 **Why it is an issue.** Break tags are template markup and do not describe the customer's request.
 
-**How it was addressed.** change
+**How it was addressed.** Replaced break tags with spaces
 
 **Records affected.** 652
 
@@ -114,13 +129,13 @@
 
 **Risk.** The pattern is limited to br so it does not delete other tags.
 
-## 8. Broken break markers
+## 9. Broken break markers
 
 **What the issue was.** Broken break markers
 
 **Why it is an issue.** These closings are a line break written without a finished br tag.
 
-**How it was addressed.** change
+**How it was addressed.** Repaired broken break markers
 
 **Records affected.** 19
 
@@ -128,13 +143,13 @@
 
 **Risk.** Only the broken <brWarm tag and the doubled brbr run are matched.
 
-## 9. Missing space after sentence punctuation
+## 10. Missing space after sentence punctuation
 
 **What the issue was.** Missing space after sentence punctuation
 
 **Why it is an issue.** Two sentences were concatenated, so the model sees one token instead of two.
 
-**How it was addressed.** change
+**How it was addressed.** Inserted missing spaces after sentence punctuation
 
 **Records affected.** 1830
 
@@ -142,13 +157,13 @@
 
 **Risk.** The next character must be a capital, so names such as Node.js stay intact.
 
-## 10. Missing space after a comma
+## 11. Missing space after a comma
 
 **What the issue was.** Missing space after a comma
 
 **Why it is an issue.** The comma is glued to the next word in openings and signature lines.
 
-**How it was addressed.** change
+**How it was addressed.** Inserted missing spaces after commas
 
 **Records affected.** 1912
 
@@ -156,13 +171,13 @@
 
 **Risk.** The space is inserted at the first letter only, so nameacc_num stays one token.
 
-## 11. Curly single quotes
+## 12. Curly single quotes
 
 **What the issue was.** Curly single quotes
 
 **Why it is an issue.** A curly apostrophe and an ASCII apostrophe are the same word with two code points.
 
-**How it was addressed.** change
+**How it was addressed.** Replaced curly single quotes with ASCII apostrophes
 
 **Records affected.** 71
 
@@ -170,13 +185,13 @@
 
 **Risk.** The curly mark is treated as an apostrophe.
 
-## 12. Square-bracket template slots
+## 13. Square-bracket template slots
 
 **What the issue was.** Square-bracket template slots
 
 **Why it is an issue.** Bracketed slots such as [Your Name] are unfilled template fields.
 
-**How it was addressed.** change
+**How it was addressed.** Replaced square-bracket template slots with placeholders
 
 **Records affected.** 949
 
@@ -184,13 +199,13 @@
 
 **Risk.** A broad bracket pattern also matches a JSON fragment that names a real product.
 
-## 13. Angle-bracket placeholders
+## 14. Angle-bracket placeholders
 
 **What the issue was.** Angle-bracket placeholders
 
 **Why it is an issue.** Angle-bracket slots such as <tel_num> and <name> are redacted fields written as markup.
 
-**How it was addressed.** replace PII
+**How it was addressed.** Replaced angle-bracket placeholders with placeholders
 
 **Records affected.** 987
 
