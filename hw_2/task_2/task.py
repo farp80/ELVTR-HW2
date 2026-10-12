@@ -2,13 +2,14 @@ import random
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-from utils.pandas_utils import PandasUtils
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+HW2_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from shared.utils.pandas_utils import PandasUtils
 
 panda_base = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+    file_path=PROJECT_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
 )
 data_cleaned = panda_base.df
 
@@ -42,7 +43,7 @@ splitted_df = panda_base.create_dataframe(split_records, columns=["ticket_id", "
 print(splitted_df.head())
 
 splitted_df.to_csv(
-    r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_splitted.csv",
+    HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_splitted.csv",
     index=False,
 )
 
@@ -56,7 +57,7 @@ print(splitted_df["split"].value_counts(normalize=True))
 print("Splitted columns check passed")
 
 original_pandas = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets.csv"
+    file_path=HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets.csv"
 )
 original_df = original_pandas.df
 

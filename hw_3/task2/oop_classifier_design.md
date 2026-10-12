@@ -123,6 +123,20 @@ Explanation:
 
 ## Why Logistic Regression?
 
+Logistic Regression is not selected because it is the final best model for all
+ticket-routing problems.
+
+It is selected because this task needs a clear ML baseline that I can understand
+and explain.
+
+At this learning stage, I want a model where the flow makes sense:
+
+```text
+ticket text -> TF-IDF features -> model weights -> department probabilities
+```
+
+That is easier to understand than starting with a more advanced model.
+
 Use:
 
 ```python
@@ -135,12 +149,35 @@ LogisticRegression(
 
 Explanation:
 
-- It is CPU-friendly.
-- It works well with TF-IDF text features.
-- It supports `predict_proba()`, which helps create class scores.
+- It is CPU-friendly, so I can run it locally.
+- It works well with TF-IDF text features because TF-IDF creates many sparse
+  numeric columns.
+- It is easier to reason about than deep learning models. It learns which words
+  and phrases push the prediction toward each department.
+- It supports `predict_proba()`, which helps create the required `class_scores`.
 - `class_weight="balanced"` helps because some departments have many more
   tickets than others.
 - `random_state=42` helps make results reproducible.
+
+Models I am not choosing first:
+
+- `MultinomialNB`: simple and fast, but it can be too simple for this routing
+  problem.
+- `LinearSVC`: often strong for text, but probability scores are not as direct.
+- `RandomForestClassifier`: useful for many tabular problems, but not usually
+  my first choice for sparse TF-IDF text.
+- Transformers: powerful, but too complex for this baseline and harder to
+  explain at this stage.
+
+The practical reason is:
+
+```text
+Logistic Regression is a good first baseline because it is understandable,
+fast, reproducible, and compatible with TF-IDF and probability scores.
+```
+
+If validation results are weak later, I can compare another model. But for this
+homework, I should first build a baseline that I understand clearly.
 
 ## Full Class Draft
 

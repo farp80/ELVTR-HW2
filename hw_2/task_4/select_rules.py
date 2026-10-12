@@ -3,18 +3,19 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+HW2_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-from utils.pandas_utils import PandasUtils
-from utils.shared import score_phrase, score_words, words_in
+from shared.utils.pandas_utils import PandasUtils
+from shared.utils.shared import score_phrase, score_words, words_in
 
 data_cleaned_base = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+    file_path=PROJECT_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
 )
 splitted_base = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
+    file_path=HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
 )
 
 current_df = data_cleaned_base.df.merge(splitted_base.df, on="ticket_id", how="left")
@@ -136,7 +137,7 @@ settings = {
     "rules": rules,
 }
 
-output_path = ROOT / "possible_baselinerules.json"
+output_path = HW2_ROOT / "possible_baselinerules.json"
 with open(output_path, "w", encoding="utf-8") as file:
     json.dump(settings, file, indent=2)
 

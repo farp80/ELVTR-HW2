@@ -5,15 +5,15 @@ This file explains how I should complete Task 3.2 step by step.
 I am keeping the explanation beginner-friendly because the goal is to learn the
 process, not to write advanced code.
 
-The OOP classifier design is also explained in:
+The OOP classifier design is explained in:
 
 ```text
 oop_classifier_design.md
 ```
 
-However, this file also includes the full class outline and the full workflow
-because this main `.md` file should contain everything needed to understand Task
-3.2.
+This main file explains the workflow and points to the OOP file for the class
+details. I am keeping the class in a separate `.md` file so the main task file
+is easier to read.
 
 ## Requirement Summary
 
@@ -139,14 +139,57 @@ LogisticRegression(
 
 Why this model?
 
-- It is a good basic baseline for text classification.
-- It works with TF-IDF features.
-- It is CPU-friendly.
-- It can return probability scores with `predict_proba()`.
-- `class_weight="balanced"` helps with the department imbalance.
-- `random_state=42` helps make the result reproducible.
+Logistic Regression is not chosen because it is guaranteed to be the best model.
+It is chosen because it is a strong first ML baseline for this assignment.
 
-This is not meant to be the best possible model. It is a clear baseline.
+For this homework, "best" does not mean "most advanced." The goal is to retrain
+the existing routing workflow, create validation predictions, and later measure
+the results. A good baseline should be simple enough to understand, fast enough
+to run locally, and clear enough that I can explain why it made a prediction.
+
+Logistic Regression fits that goal because:
+
+- It works well with TF-IDF text features. TF-IDF creates many sparse numeric
+  columns, and Logistic Regression is designed to handle that kind of data.
+- It is easier to understand than more advanced models. It learns weights for
+  words and phrases, so if words like `refund`, `invoice`, `outage`, or
+  `password` matter, the model can learn that relationship.
+- It is CPU-friendly. I do not need a GPU or a large deep-learning model to run
+  it.
+- It supports `predict_proba()`, which is important because Task 3.2 requires
+  `class_scores`.
+- It supports `class_weight="balanced"`, which helps because some departments
+  have many more tickets than others.
+- It supports `random_state=42`, which helps make the workflow reproducible.
+
+I would not say Logistic Regression is always better than other models. It is a
+good starting point because I can understand the full path:
+
+```text
+ticket body -> cleaned text -> TF-IDF numbers -> Logistic Regression -> class scores
+```
+
+Other models I could consider later:
+
+- `MultinomialNB`: very fast and common for text, but its probability
+  assumptions can be too simple.
+- `LinearSVC`: often strong for text classification, but it does not naturally
+  return probabilities like `predict_proba()`.
+- `RandomForestClassifier`: easier to explain in some tabular problems, but it
+  usually does not work as well with very high-dimensional sparse TF-IDF text.
+- Transformer models: often stronger for language tasks, but they are more
+  complex, slower, and harder to explain for this learning step.
+
+So the selection is a learning and baseline decision:
+
+```text
+Start with Logistic Regression because it is simple, explainable, reproducible,
+and compatible with TF-IDF and class scores.
+```
+
+If the validation metrics later show weak macro-F1 or poor minority-class
+recall, then I can compare another model. But I should not change the model just
+because I assume another one might be better.
 
 ## Step 1 - Import the Needed Libraries
 
@@ -239,120 +282,22 @@ Why:
 
 ## Step 6 - Create the Classifier
 
-The class is also explained in:
+The class is explained in:
 
 ```text
 oop_classifier_design.md
 ```
 
-But the full class outline is included here too, so this main file has
-everything in one place.
+The OOP file should contain the class details, including:
 
-```python
-class TicketRoutingClassifier:
-    def __init__(self):
-        self.vectorizer = TfidfVectorizer(
-            lowercase=True,
-            ngram_range=(1, 2),
-            min_df=2,
-            max_df=0.95,
-        )
-
-        self.model = LogisticRegression(
-            max_iter=1000,
-            class_weight="balanced",
-            random_state=42,
-        )
-
-        self.label_names = {
-            "billing and payments": "Billing and Payments",
-            "customer service": "Customer Service",
-            "general inquiry": "General Inquiry",
-            "human resources": "Human Resources",
-            "it support": "IT Support",
-            "product support": "Product Support",
-            "returns and exchanges": "Returns and Exchanges",
-            "sales and pre-sales": "Sales and Pre-Sales",
-            "service outages and maintenance": "Service Outages and Maintenance",
-            "technical support": "Technical Support",
-        }
-
-    def clean_text(self, text):
-        if pd.isna(text):
-            return ""
-
-        text = str(text)
-        text = text.lower()
-        text = re.sub(r"\s+", " ", text)
-        text = text.strip()
-
-        return text
-
-    def prepare_texts(self, texts):
-        if isinstance(texts, str):
-            texts = [texts]
-
-        cleaned_texts = []
-
-        for text in texts:
-            cleaned_texts.append(self.clean_text(text))
-
-        return cleaned_texts
-
-    def fit(self, train_bodies, train_labels):
-        cleaned_bodies = self.prepare_texts(train_bodies)
-        X_train = self.vectorizer.fit_transform(cleaned_bodies)
-        self.model.fit(X_train, train_labels)
-
-        return self
-
-    def predict(self, ticket_body):
-        cleaned_body = self.prepare_texts(ticket_body)
-        X = self.vectorizer.transform(cleaned_body)
-
-        probabilities = self.model.predict_proba(X)[0]
-        classes = self.model.classes_
-        best_index = probabilities.argmax()
-
-        return {
-            "recommended_department": self.format_label(classes[best_index]),
-            "class_scores": {
-                self.format_label(label): round(float(score), 4)
-                for label, score in zip(classes, probabilities)
-            },
-        }
-
-    def predict_many(self, ticket_bodies):
-        results = []
-
-        for body in ticket_bodies:
-            results.append(self.predict(body))
-
-        return results
-
-    def format_label(self, label):
-        label = str(label)
-        return self.label_names.get(label, label.title())
-
-    def save(self, model_path):
-        joblib.dump(self, model_path)
-
-    @classmethod
-    def load(cls, model_path):
-        return joblib.load(model_path)
-```
-
-Why the class is written this way:
-
-- `__init__()` creates the vectorizer, model, and label names.
-- `clean_text()` keeps basic text cleaning inside the classifier.
-- `prepare_texts()` makes one string or many strings safe for TF-IDF.
-- `fit()` trains the TF-IDF preprocessor and model on training data.
-- `predict()` returns the required dictionary with department and class scores.
-- `predict_many()` is a simple helper for multiple tickets.
-- `format_label()` makes labels look like the assignment example.
-- `save()` stores the trained classifier.
-- `load()` opens the saved classifier later.
+- `clean_text()`
+- `prepare_texts()`
+- `fit()`
+- `predict()`
+- `predict_many()`
+- `format_label()`
+- `save()`
+- `load()`
 
 Basic usage:
 
@@ -595,4 +540,25 @@ Before considering Task 3.2 complete, check:
 - The prediction CSV has exactly 4 columns.
 - `class_scores` is saved as a JSON string.
 - The prediction CSV has one row per validation ticket.
+
+## Rubric Self-Check
+
+Expected score: incomplete until the real code is run and artifacts are created.
+
+- Requirement: replace the Homework 2 manifest with the Homework 3 split manifest.
+  - Status: planned in the workflow.
+- Requirement: retrain the classifier and preprocessor on the new training split.
+  - Status: planned in the workflow.
+- Requirement: predict every validation record.
+  - Status: planned in the workflow.
+- Requirement: save a 4-column CSV.
+  - Status: planned with `ticket_id`, `true_label`, `recommended_department`, and `class_scores`.
+- Requirement: keep cleaning, preprocessing, and model logic inside the classifier class.
+  - Status: explained here and detailed in `oop_classifier_design.md`.
+- Requirement: ensure reproducibility.
+  - Status: planned with the canonical split and `random_state=42`.
+
+Main risk:
+
+- This Markdown explains the implementation, but the saved model and validation prediction CSV still need to be produced by running the real code.
 

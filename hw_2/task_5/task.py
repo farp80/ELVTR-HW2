@@ -8,21 +8,22 @@ import sys
 import joblib
 
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+HW2_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 
-from utils.pandas_utils import PandasUtils
-from ticket_preprocessor import TicketPreprocessor
+from shared.utils.pandas_utils import PandasUtils
+from shared.classes.ticket_preprocessor import TicketPreprocessor
 
 cleaned_baseline = PandasUtils(
-    file_path=ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+    file_path=PROJECT_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
 )
 cleaned_df = cleaned_baseline.df
 
 splitted_baseline = PandasUtils(
-    file_path=ROOT / "Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
+    file_path=HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
 )
 splitted_df = splitted_baseline.df
 
@@ -39,5 +40,5 @@ print("Test:", X_test_vectors.shape)
 
 joblib.dump(
     preprocessor.vectorizer,
-    ROOT / "Fidel Alejandro Rosell Perez - tfidf_vectorizer.pkl",
+    HW2_ROOT / "Fidel Alejandro Rosell Perez - tfidf_vectorizer.pkl",
 )

@@ -3,13 +3,14 @@ import sys
 import unicodedata
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+HW2_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-from utils.log import Logs
-from utils.pandas_utils import PandasUtils
-from utils.shared import (
+from shared.utils.log import Logs
+from shared.utils.pandas_utils import PandasUtils
+from shared.utils.shared import (
     clean_whitespace,
     email_pattern,
     filter_pii,
@@ -24,8 +25,6 @@ from utils.shared import (
 )
 
 if __name__ == "__main__":
-    PROJECT_ROOT = Path(__file__).resolve().parents[2]
-    HW2_ROOT = Path(__file__).resolve().parents[1]
     kwargs = {
         "file_path": HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets.csv"
     }

@@ -2,19 +2,20 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+HW2_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-from rule_based import RuleBasedBaseline
+from shared.classes.rule_based import RuleBasedBaseline
 
-from utils.pandas_utils import PandasUtils
+from shared.utils.pandas_utils import PandasUtils
 
 data_cleaned_base = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+    file_path=PROJECT_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
 )
 splitted_base = PandasUtils(
-    file_path=r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
+    file_path=HW2_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_splitted.csv"
 )
 
 current_df = data_cleaned_base.df.merge(splitted_base.df, on="ticket_id", how="left")
@@ -27,18 +28,18 @@ constant_baseline = int(
 percentage_constant_baseline = constant_baseline / total_rows * 100
 
 trained_df.to_csv(
-    r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - trained_df.csv",
+    HW2_ROOT / "Fidel Alejandro Rosell Perez - trained_df.csv",
     index=False,
 )
 
-with open(ROOT / "possible_baselinerules.json", encoding="utf-8") as file:
+with open(HW2_ROOT / "possible_baselinerules.json", encoding="utf-8") as file:
     settings = json.load(file)
 
 MAJORITY = settings["majority_department"]
 rules = settings["rules"]
 
 model = RuleBasedBaseline(MAJORITY, rules)
-model_path = ROOT / "Fidel Alejandro Rosell Perez - rule_based_baseline.pkl"
+model_path = HW2_ROOT / "Fidel Alejandro Rosell Perez - rule_based_baseline.pkl"
 model.save(model_path)
 
 loaded = RuleBasedBaseline.load(model_path)
