@@ -195,21 +195,25 @@ class ClassificationMetricEvaluator:
             "weighted_f1": self.weighted_f1(df),
         }
 
+    def length_cutoffs(self, lengths):
+        short_cutoff = lengths.quantile(0.33)
+        medium_cutoff = lengths.quantile(0.66)
+        return short_cutoff, medium_cutoff
+
+    def length_slice(self, length, short_cutoff, medium_cutoff):
+        if length <= short_cutoff:
+            return "short"
+        if length <= medium_cutoff:
+            return "medium"
+        return "long"
+
     def add_body_length_slices(self, body_df):
         merged = self.df.merge(body_df[["ticket_id", "body"]], on="ticket_id", how="left")
         merged["body_length"] = merged["body"].fillna("").astype(str).str.len()
-
-        short_cutoff = merged["body_length"].quantile(0.33)
-        medium_cutoff = merged["body_length"].quantile(0.66)
-
-        def assign_slice(length):
-            if length <= short_cutoff:
-                return "short"
-            if length <= medium_cutoff:
-                return "medium"
-            return "long"
-
-        merged["body_length_slice"] = merged["body_length"].apply(assign_slice)
+        short_cutoff, medium_cutoff = self.length_cutoffs(merged["body_length"])
+        merged["body_length_slice"] = merged["body_length"].apply(
+            lambda length: self.length_slice(length, short_cutoff, medium_cutoff)
+        )
         self.df = merged
 
         return self.df
@@ -312,16 +316,23 @@ Weighted-F1 averages F1 scores using each department's support.
 This is the secondary metric from Task 3.1 because it reflects the real label
 distribution.
 
+### `length_cutoffs()`
+
+This only finds the two boundaries. `0.33` is the short boundary. `0.66` is the medium boundary. It does not name a ticket short, medium, or long.
+
+### `length_slice()`
+
+This only names one length. It receives the length and the two boundaries as arguments, so it does not read `self.df` and it does not calculate quantiles.
+
+```text
+length_slice(100, short_cutoff=80, medium_cutoff=200) -> "medium"
+```
+
+A nested function cannot be called this way. It only exists while `add_body_length_slices()` is running, and it reaches back for `short_cutoff`.
+
 ### `add_body_length_slices()`
 
-This adds body length and creates three groups:
-
-- short
-- medium
-- long
-
-The method uses validation-set length cutoffs so the groups are based on the
-actual validation data.
+This only attaches columns. It joins the body, counts characters, asks `length_cutoffs()` for the boundaries, and asks `length_slice()` for the name of each row.
 
 ### `metrics_by_slice()`
 
