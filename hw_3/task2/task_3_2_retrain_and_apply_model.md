@@ -543,22 +543,27 @@ Before considering Task 3.2 complete, check:
 
 ## Rubric Self-Check
 
-Expected score: incomplete until the real code is run and artifacts are created.
+Checked against `task_requirements.md` using `task.py`, `shared/classes/ticket_routing_classifier.py`, `hw_3/Fidel Alejandro Rosell Perez - hw3_ml_baseline.pkl`, and `hw_3/Fidel Alejandro Rosell Perez - validation_predictions.csv`.
 
-- Requirement: replace the Homework 2 manifest with the Homework 3 split manifest.
-  - Status: planned in the workflow.
-- Requirement: retrain the classifier and preprocessor on the new training split.
-  - Status: planned in the workflow.
-- Requirement: predict every validation record.
-  - Status: planned in the workflow.
-- Requirement: save a 4-column CSV.
-  - Status: planned with `ticket_id`, `true_label`, `recommended_department`, and `class_scores`.
-- Requirement: keep cleaning, preprocessing, and model logic inside the classifier class.
-  - Status: explained here and detailed in `oop_classifier_design.md`.
-- Requirement: ensure reproducibility.
-  - Status: planned with the canonical split and `random_state=42`.
+The validation split has 3,755 ticket ids. The prediction file has those same 3,755 ids and no extras.
 
-Main risk:
+| Requirement | Result | Evidence |
+| --- | --- | --- |
+| Use `split_manifest.csv` instead of the Homework 2 split | Met | `task.py` reads `hw_3/Fidel Alejandro Rosell Perez - split_manifest.csv` and merges it on `ticket_id`. |
+| Retrain the classifier on the new training split | Met | `fit` is called with rows where `split == "train"`. The vectorizer is fit inside that call. |
+| Predict every validation record | Met | 3,755 prediction rows, 3,755 unique ids, same set as the validation split. The test split is not in the file. |
+| Save a 4-column CSV | Met | Columns are `ticket_id`, `true_label`, `recommended_department`, `class_scores`. `class_scores` is a JSON object with 10 departments, and the scores in the first row sum to 1. |
+| Keep cleaning, preprocessing, and the model inside the classifier | Met | `clean_text`, `TfidfVectorizer`, and `LogisticRegression` are methods and attributes of `TicketRoutingClassifier`. `fit` and `predict` take raw body text. |
+| Make training and prediction reproducible | Met | The split file is fixed. `LogisticRegression` uses `random_state=42`. The saved model is `hw_3/Fidel Alejandro Rosell Perez - hw3_ml_baseline.pkl`. |
 
-- This Markdown explains the implementation, but the saved model and validation prediction CSV still need to be produced by running the real code.
+Deliverables:
+
+| Deliverable | Result |
+| --- | --- |
+| Classifier class | Met. It lives in `shared/classes/ticket_routing_classifier.py`. |
+| Split code that feeds the classifier | Met. It lives in `hw_3/task2/task.py`. |
+| Saved retrained model | Met. The `.pkl` file is present. |
+| Prediction CSV | Met. The validation file is present and has four columns. |
+
+One label detail does not fail this task, and it matters for the next one. `true_label` is stored in lowercase (`technical support`). `recommended_department` is stored in title case (`Technical Support`). A later accuracy check has to use the same spelling for both columns before it compares them.
 
