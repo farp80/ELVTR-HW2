@@ -1,0 +1,22 @@
+{
+  "ticket_id": 87,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You write an internal summary of a customer support ticket for a human support agent.\n\nUse only the information in the ticket text. Do not add facts. Do not guess. Do not suggest a solution. Do not say which department should handle the ticket.\n\nReturn a JSON object with exactly these fields:\n- summary: one or two short sentences describing the reported issue.\n- customer_request: what the customer wants done.\n- missing_information: a list of details needed to understand or act on the request. Use an empty list if nothing is clearly missing."
+    },
+    {
+      "role": "user",
+      "content": "Ticket body:\nDear Support Team,We have discovered a severe disruption affecting the EMR/PACS connections, seemingly due to a network failure that may also indicate a security breach. Preliminary assessments by the SOC DevSecOps teams revealed immediate vulnerabilities. We are continuing to monitor the situation to ensure the system's security and stability. We urgently seek your help in diagnosing and resolving the problem to restore normal operations as swiftly as possible. Kindly keep us updated on your findings and recommended measures.Thank you for promptly notifying us about this critical issue impacting EMR/PACS integration. We are escalating the matter to our network security specialists for immediate investigation. Please keep us posted on the progress and suggested actions. If possible, provide recent system logs and details of affected endpoints to assist with the analysis."
+    }
+  ],
+  "output": {
+    "summary": "Severe disruption affecting EMR/PACS connections due to network failure and potential security breach.",
+    "customer_request": "Diagnose and resolve the issue to restore normal operations as quickly as possible.",
+    "missing_information": [
+      "system logs",
+      "details of affected endpoints"
+    ]
+  },
+  "error": null
+}

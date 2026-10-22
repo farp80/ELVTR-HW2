@@ -11,15 +11,14 @@ if str(ROOT) not in sys.path:
 
 from shared.classes.classification_metric_evaluator import ClassificationMetricEvaluator
 
-ROOT = Path(r"D:\ELVTR\homeworks\ELVTR-HW2")
-HW3_ROOT = ROOT / "hw_3"
-print(HW3_ROOT)
-prediction_path = HW3_ROOT / "Fidel Alejandro Rosell Perez - validation_predictions.csv"
-cleaned_path = ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+DATA_ROOT = ROOT / "hw_3"
+TASK_ROOT = Path(__file__).resolve().parent
+prediction_path = (
+    DATA_ROOT / "Fidel Alejandro Rosell Perez - validation_predictions.csv"
+)
+cleaned_path = DATA_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
 report_path = (
-    HW3_ROOT
-    / "task_3"
-    / "Fidel Alejandro Rosell Perez - validation_evaluation_report.md"
+    TASK_ROOT / "Fidel Alejandro Rosell Perez - validation_evaluation_report.md"
 )
 
 prediction_df = pd.read_csv(prediction_path)
@@ -47,6 +46,7 @@ matrix_df = pd.DataFrame(per_class).T
 print(matrix_df)
 print("#" * 100)
 
+print("####################### CONFUSION COUNTS ########################")
 one_vs_rest_rows = []
 
 for label in metrics_evaluator.labels:
@@ -54,3 +54,49 @@ for label in metrics_evaluator.labels:
 
 one_vs_rest_df = pd.DataFrame(one_vs_rest_rows)
 print(one_vs_rest_df)
+print("#" * 100)
+
+print("####################### BODY SLICES ########################")
+cleaned_df = pd.read_csv(cleaned_path)
+metrics_evaluator.add_body_length_slices(cleaned_df)
+
+slice_results = metrics_evaluator.metrics_by_slice()
+
+for slice_name, result in slice_results.items():
+    print(slice_name)
+    print(result["row_count"])
+    print(result["summary"])
+    print(pd.DataFrame(result["per_class"]))
+print("#" * 100)
+
+print("####################### DEPARTMENTS (BEST AND WORST) ########################")
+per_class_df = pd.DataFrame(metrics_evaluator.per_class_metrics())
+best_departments = per_class_df.sort_values("f1", ascending=False).head(5)
+worst_departments = per_class_df.sort_values("f1", ascending=True).head(5)
+
+print(f"Best departments: {best_departments}")
+print(f"Worst departments: {worst_departments}")
+print("#" * 100)
+
+print("####################### CONFUSION PATTTERNS  ########################")
+confusions = []
+
+for true_label in metrics_evaluator.labels:
+    for pred_label in metrics_evaluator.labels:
+        if true_label == pred_label:
+            continue
+
+        count = matrix[true_label][pred_label]
+
+        if count > 0:
+            confusions.append(
+                {
+                    "true_label": true_label,
+                    "predicted_label": pred_label,
+                    "count": count,
+                }
+            )
+
+confusion_df = pd.DataFrame(confusions)
+confusion_df = confusion_df.sort_values("count", ascending=False)
+print(confusion_df.head(10))

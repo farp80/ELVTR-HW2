@@ -1,0 +1,2502 @@
+{
+  "slice": {
+    "true_label": "Technical Support",
+    "predicted_label": "IT Support",
+    "records_in_slice": 159,
+    "inspected": 30
+  },
+  "tickets": [
+    {
+      "ticket_id": 54,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Support Team, I am submitting a report concerning a significant issue impacting several crucial systems within our organization. Since last evening, we have encountered sporadic unresponsiveness across various vital platforms, including Outlook email and calendar services, as well as multiple network equipment. These disruptions are drastically hindering our daily workflow and communication. The issues observed include delays and failures in email delivery, improper synchronization of calendar events, and network device malfunctions.",
+      "evidence": {
+        "score_predicted": 0.2192,
+        "score_true": 0.1941,
+        "score_gap": 0.0251,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2192
+          ],
+          [
+            "Technical Support",
+            0.1941
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1868
+          ]
+        ],
+        "body_chars": 544,
+        "n_known_terms": 106,
+        "terms_toward_predicted": [
+          [
+            "network",
+            0.175
+          ],
+          [
+            "malfunctions",
+            0.12
+          ],
+          [
+            "outlook",
+            0.097
+          ],
+          [
+            "workflow",
+            0.065
+          ],
+          [
+            "disruptions",
+            0.065
+          ],
+          [
+            "last",
+            0.062
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "include",
+            -0.081
+          ],
+          [
+            "have encountered",
+            -0.08
+          ],
+          [
+            "device",
+            -0.065
+          ],
+          [
+            "report",
+            -0.061
+          ],
+          [
+            "organization",
+            -0.056
+          ],
+          [
+            "email",
+            -0.056
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "The ticket says Outlook, email and network equipment are not responding. The strongest words are about the network and device failures.",
+      "why_model_predicted": "The gap is small (0.025). 'network' (+0.175), 'malfunctions' (+0.120) and 'outlook' (+0.097) push to IT Support. The words for Technical Support are weak ('include' -0.081, 'device' -0.065)."
+    },
+    {
+      "ticket_id": 432,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The team is experiencing connection problems and synchronization failures across various hardware. It is suspected that a recent firmware upgrade and network modifications may be the cause. Devices have been rebooted and cables verified, but the issues continue. Immediate support is needed to resolve these interruptions.",
+      "evidence": {
+        "score_predicted": 0.2626,
+        "score_true": 0.2415,
+        "score_gap": 0.0211,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2626
+          ],
+          [
+            "Technical Support",
+            0.2415
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1566
+          ]
+        ],
+        "body_chars": 322,
+        "n_known_terms": 77,
+        "terms_toward_predicted": [
+          [
+            "upgrade",
+            0.125
+          ],
+          [
+            "network",
+            0.12
+          ],
+          [
+            "suspected that",
+            0.111
+          ],
+          [
+            "it",
+            0.086
+          ],
+          [
+            "devices",
+            0.073
+          ],
+          [
+            "problems",
+            0.073
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "firmware",
+            -0.101
+          ],
+          [
+            "immediate",
+            -0.09
+          ],
+          [
+            "is experiencing",
+            -0.077
+          ],
+          [
+            "these",
+            -0.067
+          ],
+          [
+            "verified",
+            -0.066
+          ],
+          [
+            "to resolve",
+            -0.064
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "Connection and sync failures across hardware after a firmware upgrade and network changes. The words are about the network and devices.",
+      "why_model_predicted": "The gap is tiny (0.021). 'upgrade' (+0.125), 'network' (+0.120) and 'suspected that' (+0.111) push to IT Support. 'firmware' (-0.101) pushes the other way but loses."
+    },
+    {
+      "ticket_id": 460,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Assistance, I'm facing difficulties with my automated irrigation setup. The system often disconnects, causing interruptions to the planned watering schedule. I've attempted to reboot the device and verify the network connection, but the issue remains. Could you help resolve this problem promptly? Your quick support would be highly valued. Thanks a lot.",
+      "evidence": {
+        "score_predicted": 0.2436,
+        "score_true": 0.1823,
+        "score_gap": 0.0613,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2436
+          ],
+          [
+            "Technical Support",
+            0.1823
+          ],
+          [
+            "Product Support",
+            0.157
+          ]
+        ],
+        "body_chars": 363,
+        "n_known_terms": 83,
+        "terms_toward_predicted": [
+          [
+            "network",
+            0.113
+          ],
+          [
+            "facing difficulties",
+            0.071
+          ],
+          [
+            "the network",
+            0.065
+          ],
+          [
+            "and verify",
+            0.061
+          ],
+          [
+            "verify",
+            0.046
+          ],
+          [
+            "system",
+            0.044
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "the device",
+            -0.085
+          ],
+          [
+            "device",
+            -0.084
+          ],
+          [
+            "difficulties with",
+            -0.074
+          ],
+          [
+            "the",
+            -0.068
+          ],
+          [
+            "attempted",
+            -0.067
+          ],
+          [
+            "your quick",
+            -0.057
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "A home irrigation device keeps disconnecting. It is a device problem, but the customer mentions the network connection, so network words show up.",
+      "why_model_predicted": "'network' (+0.113), 'facing difficulties' (+0.071) and 'the network' (+0.065) push to IT Support. 'the device' (-0.085) and 'device' (-0.084) push to Technical Support, but not enough (gap 0.061)."
+    },
+    {
+      "ticket_id": 820,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The marketing agency encountered difficulties accessing the website following recent software updates.",
+      "evidence": {
+        "score_predicted": 0.3763,
+        "score_true": 0.154,
+        "score_gap": 0.2223,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3763
+          ],
+          [
+            "Technical Support",
+            0.154
+          ],
+          [
+            "Customer Service",
+            0.0817
+          ]
+        ],
+        "body_chars": 102,
+        "n_known_terms": 21,
+        "terms_toward_predicted": [
+          [
+            "the website",
+            0.203
+          ],
+          [
+            "website",
+            0.196
+          ],
+          [
+            "following recent",
+            0.173
+          ],
+          [
+            "marketing",
+            0.135
+          ],
+          [
+            "marketing agency",
+            0.123
+          ],
+          [
+            "following",
+            0.108
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "agency encountered",
+            -0.098
+          ],
+          [
+            "encountered difficulties",
+            -0.078
+          ],
+          [
+            "the",
+            -0.061
+          ],
+          [
+            "encountered",
+            -0.047
+          ],
+          [
+            "difficulties",
+            -0.043
+          ],
+          [
+            "software updates",
+            -0.043
+          ]
+        ]
+      },
+      "failure_category": "Very short ticket",
+      "category_rationale": "The ticket is one sentence: 102 characters and 21 words the model knows. There is not enough text to tell the departments apart.",
+      "why_model_predicted": "A few words decide everything. 'the website' (+0.203), 'website' (+0.196), 'following recent' (+0.173) and 'marketing' (+0.135) push to IT Support. The gap is large (0.222)."
+    },
+    {
+      "ticket_id": 1134,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Customer Support, I am compiling a report on the underperformance of our marketing agency's digital campaigns. We suspect that there may be data integration problems across the Oracle database and marketing tools. Our team has tried troubleshooting by checking data synchronization and applying the latest software updates, but the issue remains unresolved. We would greatly appreciate your help in diagnosing the root cause and providing a solution to get our campaigns back on track. Thank you for your assistance.",
+      "evidence": {
+        "score_predicted": 0.2733,
+        "score_true": 0.1502,
+        "score_gap": 0.1231,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2733
+          ],
+          [
+            "Product Support",
+            0.2233
+          ],
+          [
+            "Technical Support",
+            0.1502
+          ]
+        ],
+        "body_chars": 521,
+        "n_known_terms": 138,
+        "terms_toward_predicted": [
+          [
+            "marketing",
+            0.102
+          ],
+          [
+            "marketing tools",
+            0.101
+          ],
+          [
+            "cause and",
+            0.089
+          ],
+          [
+            "database and",
+            0.085
+          ],
+          [
+            "tools",
+            0.084
+          ],
+          [
+            "problems",
+            0.059
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "campaigns",
+            -0.122
+          ],
+          [
+            "data",
+            -0.082
+          ],
+          [
+            "integration problems",
+            -0.075
+          ],
+          [
+            "of our",
+            -0.075
+          ],
+          [
+            "report",
+            -0.068
+          ],
+          [
+            "there",
+            -0.059
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "The problem is data integration between an Oracle database and marketing tools. The word 'marketing' pushes to IT Support even though it says nothing about the fault.",
+      "why_model_predicted": "'marketing' (+0.102), 'marketing tools' (+0.101), 'database and' (+0.085) and 'tools' (+0.084) push to IT Support (gap 0.123). The Technical Support words are weaker: 'campaigns' (-0.122) and 'data' (-0.082). Technical Support is only third; Product Support is second."
+    },
+    {
+      "ticket_id": 1158,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The digital tools used by the marketing agency are not functioning properly, which is hindering efforts to grow the brand. Potential reasons might be conflicts between software or hardware problems. Attempts to fix the issue by restarting devices and updating software have not been successful. We would be grateful for prompt assistance to resolve this matter.",
+      "evidence": {
+        "score_predicted": 0.3336,
+        "score_true": 0.2894,
+        "score_gap": 0.0442,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3336
+          ],
+          [
+            "Technical Support",
+            0.2894
+          ],
+          [
+            "Returns and Exchanges",
+            0.1006
+          ]
+        ],
+        "body_chars": 361,
+        "n_known_terms": 100,
+        "terms_toward_predicted": [
+          [
+            "digital tools",
+            0.128
+          ],
+          [
+            "tools",
+            0.1
+          ],
+          [
+            "or hardware",
+            0.097
+          ],
+          [
+            "properly which",
+            0.079
+          ],
+          [
+            "devices and",
+            0.075
+          ],
+          [
+            "devices",
+            0.07
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "agency are",
+            -0.09
+          ],
+          [
+            "efforts to",
+            -0.07
+          ],
+          [
+            "between software",
+            -0.069
+          ],
+          [
+            "to resolve",
+            -0.062
+          ],
+          [
+            "grow",
+            -0.062
+          ],
+          [
+            "conflicts",
+            -0.061
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "The ticket says 'digital tools' are not working. It names no product and no error. The generic words 'tools' and 'devices' decide the result.",
+      "why_model_predicted": "The gap is small (0.044). 'digital tools' (+0.128), 'tools' (+0.100), 'or hardware' (+0.097) and 'devices' (+0.070) push to IT Support. 'agency are' (-0.090) pushes the other way."
+    },
+    {
+      "ticket_id": 1227,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support has reported that several digital tools used by the company, such as PowerPoint, JIRA, and Figma, are not functioning properly. This disruption is significantly affecting marketing initiatives and brand development efforts. The potential cause might be software incompatibility or system overload due to recent updates or network problems. The team has tried to resolve the issue by restarting devices and reinstalling applications, but the problems continue across multiple affected products.",
+      "evidence": {
+        "score_predicted": 0.245,
+        "score_true": 0.2297,
+        "score_gap": 0.0153,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.245
+          ],
+          [
+            "Technical Support",
+            0.2297
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1621
+          ]
+        ],
+        "body_chars": 510,
+        "n_known_terms": 132,
+        "terms_toward_predicted": [
+          [
+            "problems",
+            0.11
+          ],
+          [
+            "the problems",
+            0.101
+          ],
+          [
+            "digital tools",
+            0.101
+          ],
+          [
+            "network",
+            0.091
+          ],
+          [
+            "tools",
+            0.078
+          ],
+          [
+            "problems continue",
+            0.076
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "incompatibility",
+            -0.123
+          ],
+          [
+            "software incompatibility",
+            -0.087
+          ],
+          [
+            "jira",
+            -0.076
+          ],
+          [
+            "incompatibility or",
+            -0.074
+          ],
+          [
+            "reported",
+            -0.069
+          ],
+          [
+            "the potential",
+            -0.067
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "PowerPoint, JIRA and Figma are not working, but the ticket describes it with generic words like 'problems' and 'digital tools'.",
+      "why_model_predicted": "It is almost a tie (gap 0.015). 'problems' (+0.110), 'the problems' (+0.101) and 'digital tools' (+0.101) push to IT Support. 'incompatibility' (-0.123) and 'jira' (-0.076) push to Technical Support and almost win."
+    },
+    {
+      "ticket_id": 1339,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The company has encountered several device malfunctions impacting scanners, antivirus programs, peripherals, and data analytics operations. Potential conflicts between hardware and software have been observed. Devices have been restarted and software has been updated, yet the problems continue.",
+      "evidence": {
+        "score_predicted": 0.3462,
+        "score_true": 0.1742,
+        "score_gap": 0.172,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3462
+          ],
+          [
+            "Technical Support",
+            0.1742
+          ],
+          [
+            "Product Support",
+            0.1209
+          ]
+        ],
+        "body_chars": 295,
+        "n_known_terms": 58,
+        "terms_toward_predicted": [
+          [
+            "and software",
+            0.213
+          ],
+          [
+            "malfunctions",
+            0.168
+          ],
+          [
+            "the problems",
+            0.137
+          ],
+          [
+            "problems continue",
+            0.104
+          ],
+          [
+            "been observed",
+            0.083
+          ],
+          [
+            "between hardware",
+            0.078
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "device",
+            -0.091
+          ],
+          [
+            "have been",
+            -0.068
+          ],
+          [
+            "conflicts",
+            -0.065
+          ],
+          [
+            "analytics",
+            -0.064
+          ],
+          [
+            "have",
+            -0.058
+          ],
+          [
+            "software have",
+            -0.053
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "Scanners, antivirus and peripherals fail because of a hardware and software conflict. The words are about hardware and devices.",
+      "why_model_predicted": "The model is confident (gap 0.172). 'and software' (+0.213), 'malfunctions' (+0.168) and 'the problems' (+0.137) push to IT Support. Only 58 words are known, and 'device' (-0.091) is the main push back."
+    },
+    {
+      "ticket_id": 1355,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, informing the healthcare provider that unauthorized access attempts have been detected on hospital systems. An initial investigation indicates that the issue may stem from outdated Kubernetes SAP patches. We have updated the firewall rules to enable login alerts, which help prevent unauthorized access. Our team is currently performing a comprehensive investigation to determine the root cause and implement further security enhancements. We will keep you informed of our progress and appreciate your assistance in this matter.",
+      "evidence": {
+        "score_predicted": 0.2859,
+        "score_true": 0.1647,
+        "score_gap": 0.1212,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2859
+          ],
+          [
+            "Technical Support",
+            0.1647
+          ],
+          [
+            "Human Resources",
+            0.1638
+          ]
+        ],
+        "body_chars": 546,
+        "n_known_terms": 127,
+        "terms_toward_predicted": [
+          [
+            "updated the",
+            0.086
+          ],
+          [
+            "cause and",
+            0.084
+          ],
+          [
+            "access",
+            0.083
+          ],
+          [
+            "been detected",
+            0.064
+          ],
+          [
+            "security enhancements",
+            0.063
+          ],
+          [
+            "attempts have",
+            0.056
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "of our",
+            -0.071
+          ],
+          [
+            "firewall",
+            -0.07
+          ],
+          [
+            "patches",
+            -0.064
+          ],
+          [
+            "an initial",
+            -0.061
+          ],
+          [
+            "issue may",
+            -0.057
+          ],
+          [
+            "we will",
+            -0.045
+          ]
+        ]
+      },
+      "failure_category": "Label could be IT Support",
+      "category_rationale": "Someone tried to get into hospital systems without permission. The customer updated firewall rules and login alerts. Security and access fit IT Support.",
+      "why_model_predicted": "'updated the' (+0.086), 'cause and' (+0.084), 'access' (+0.083) and 'been detected' (+0.064) push to IT Support (gap 0.121). 'firewall' (-0.070) and 'patches' (-0.064) push to Technical Support but are weak."
+    },
+    {
+      "ticket_id": 1448,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The investment optimization component of the data analytics platform is facing connectivity problems, potentially due to recent software upgrades. After restarting the servers, the issue remains unresolved.",
+      "evidence": {
+        "score_predicted": 0.3232,
+        "score_true": 0.1704,
+        "score_gap": 0.1528,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3232
+          ],
+          [
+            "Technical Support",
+            0.1704
+          ],
+          [
+            "Returns and Exchanges",
+            0.1166
+          ]
+        ],
+        "body_chars": 206,
+        "n_known_terms": 47,
+        "terms_toward_predicted": [
+          [
+            "connectivity problems",
+            0.235
+          ],
+          [
+            "connectivity",
+            0.136
+          ],
+          [
+            "the servers",
+            0.134
+          ],
+          [
+            "servers",
+            0.117
+          ],
+          [
+            "problems",
+            0.113
+          ],
+          [
+            "after restarting",
+            0.07
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "platform",
+            -0.132
+          ],
+          [
+            "analytics",
+            -0.098
+          ],
+          [
+            "the",
+            -0.089
+          ],
+          [
+            "potentially due",
+            -0.086
+          ],
+          [
+            "data",
+            -0.079
+          ],
+          [
+            "facing connectivity",
+            -0.079
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "The analytics platform has connection problems and the servers were restarted. The words are about connectivity and servers.",
+      "why_model_predicted": "'connectivity problems' (+0.235), 'connectivity' (+0.136) and 'the servers' (+0.134) push to IT Support (gap 0.153). 'platform' (-0.132) and 'analytics' (-0.098) push to Technical Support. The ticket is short (206 characters)."
+    },
+    {
+      "ticket_id": 1465,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, I am reporting an issue with the data analytics system used for investment optimization reports. The system has experienced a malfunction, which I suspect may be caused by a software bug or configuration error. I have already taken initial troubleshooting steps, including restarting services and reviewing logs. Additionally, I updated the software to the latest version. Despite these efforts, the issue remains unresolved and I require assistance to resolve this matter. Could you please look into the problem and provide a solution as soon as possible? Your guidance would be appreciated.",
+      "evidence": {
+        "score_predicted": 0.2691,
+        "score_true": 0.1406,
+        "score_gap": 0.1285,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2691
+          ],
+          [
+            "Human Resources",
+            0.1653
+          ],
+          [
+            "Technical Support",
+            0.1406
+          ]
+        ],
+        "body_chars": 610,
+        "n_known_terms": 154,
+        "terms_toward_predicted": [
+          [
+            "bug",
+            0.123
+          ],
+          [
+            "software to",
+            0.112
+          ],
+          [
+            "updated the",
+            0.09
+          ],
+          [
+            "software bug",
+            0.082
+          ],
+          [
+            "experienced malfunction",
+            0.081
+          ],
+          [
+            "system",
+            0.074
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "into",
+            -0.08
+          ],
+          [
+            "the",
+            -0.069
+          ],
+          [
+            "despite these",
+            -0.068
+          ],
+          [
+            "please look",
+            -0.064
+          ],
+          [
+            "these",
+            -0.054
+          ],
+          [
+            "version",
+            -0.054
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "A software bug or setting error in an analytics system, with common troubleshooting steps. It looks like a Technical Support fault, but generic software words push the model to IT Support.",
+      "why_model_predicted": "'bug' (+0.123), 'software to' (+0.112) and 'software bug' (+0.082) push to IT Support (gap 0.129). Technical Support is only third, behind Human Resources, so the ticket gives it little support."
+    },
+    {
+      "ticket_id": 1774,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support has reported an issue with the project management SaaS platform experiencing sporadic slow response times, which is believed to be caused by server overload during peak usage periods. Attempts to resolve the problem included restarting servers and clearing caches, but the issue remains unresolved. Despite these efforts, the sluggish response continues to impact the team's productivity. We would greatly appreciate it if you could investigate the matter and provide an effective solution as soon as possible.",
+      "evidence": {
+        "score_predicted": 0.2255,
+        "score_true": 0.2007,
+        "score_gap": 0.0248,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2255
+          ],
+          [
+            "Technical Support",
+            0.2007
+          ],
+          [
+            "General Inquiry",
+            0.1085
+          ]
+        ],
+        "body_chars": 527,
+        "n_known_terms": 141,
+        "terms_toward_predicted": [
+          [
+            "server",
+            0.097
+          ],
+          [
+            "sluggish",
+            0.079
+          ],
+          [
+            "servers and",
+            0.072
+          ],
+          [
+            "it",
+            0.071
+          ],
+          [
+            "management saas",
+            0.07
+          ],
+          [
+            "investigate",
+            0.065
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "the project",
+            -0.077
+          ],
+          [
+            "reported",
+            -0.075
+          ],
+          [
+            "the",
+            -0.071
+          ],
+          [
+            "platform",
+            -0.07
+          ],
+          [
+            "despite these",
+            -0.069
+          ],
+          [
+            "project",
+            -0.057
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "A project management platform is slow because of server overload. The servers were restarted. The words are about servers and slowness.",
+      "why_model_predicted": "The gap is small (0.025). 'server' (+0.097), 'sluggish' (+0.079) and 'servers and' (+0.072) push to IT Support. 'the project' (-0.077) and 'platform' (-0.070) push to Technical Support."
+    },
+    {
+      "ticket_id": 1865,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer support is needed to report an issue with the digital marketing agency's systems. The systems' digital strategies have been disrupted, likely due to software or hardware conflicts across multiple products. Despite attempts to restart and update the systems, the problem persists. This disruption is impacting our ability to implement and track marketing campaigns, raising concerns about potential effects on clients. We would greatly appreciate your assistance in resolving this issue as soon as possible. Please let us know how you can help.",
+      "evidence": {
+        "score_predicted": 0.2091,
+        "score_true": 0.1895,
+        "score_gap": 0.0196,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2091
+          ],
+          [
+            "Technical Support",
+            0.1895
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1766
+          ]
+        ],
+        "body_chars": 552,
+        "n_known_terms": 143,
+        "terms_toward_predicted": [
+          [
+            "marketing",
+            0.103
+          ],
+          [
+            "or hardware",
+            0.082
+          ],
+          [
+            "concerns about",
+            0.062
+          ],
+          [
+            "concerns",
+            0.062
+          ],
+          [
+            "to",
+            0.057
+          ],
+          [
+            "an issue",
+            0.056
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "to software",
+            -0.115
+          ],
+          [
+            "digital strategies",
+            -0.095
+          ],
+          [
+            "report",
+            -0.068
+          ],
+          [
+            "campaigns",
+            -0.061
+          ],
+          [
+            "and update",
+            -0.058
+          ],
+          [
+            "strategies have",
+            -0.054
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "Marketing systems are disrupted by a software or hardware conflict. No product is named. The word 'marketing' and generic phrases decide the result.",
+      "why_model_predicted": "It is almost a tie (gap 0.020). 'marketing' (+0.103), 'or hardware' (+0.082) and 'concerns about' (+0.062) push to IT Support. 'to software' (-0.115) and 'digital strategies' (-0.095) push to Technical Support."
+    },
+    {
+      "ticket_id": 2024,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Encountering sporadic failures with the digital tools.",
+      "evidence": {
+        "score_predicted": 0.2524,
+        "score_true": 0.1122,
+        "score_gap": 0.1402,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2524
+          ],
+          [
+            "Product Support",
+            0.2202
+          ],
+          [
+            "Human Resources",
+            0.1406
+          ]
+        ],
+        "body_chars": 54,
+        "n_known_terms": 13,
+        "terms_toward_predicted": [
+          [
+            "digital tools",
+            0.341
+          ],
+          [
+            "tools",
+            0.265
+          ],
+          [
+            "failures with",
+            0.143
+          ],
+          [
+            "sporadic",
+            0.099
+          ],
+          [
+            "failures",
+            0.069
+          ],
+          [
+            "sporadic failures",
+            0.066
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "encountering sporadic",
+            -0.211
+          ],
+          [
+            "with",
+            -0.056
+          ],
+          [
+            "the digital",
+            -0.037
+          ],
+          [
+            "the",
+            -0.037
+          ],
+          [
+            "with the",
+            -0.008
+          ]
+        ]
+      },
+      "failure_category": "Very short ticket",
+      "category_rationale": "The ticket is one sentence: 54 characters and 13 known words ('Encountering sporadic failures with the digital tools.'). It has no detail.",
+      "why_model_predicted": "'digital tools' (+0.341) and 'tools' (+0.265) decide the result (gap 0.140). Product Support is second (0.220), so the model is not sure."
+    },
+    {
+      "ticket_id": 2030,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, a healthcare provider has encountered difficulties accessing data within hospital systems, potentially due to recent software updates. Attempts to resolve this included rebooting the system and running antivirus scans, but the problem remains. We require assistance to resolve this promptly to reduce disruptions to patient care. Kindly help us troubleshoot and provide a solution to this issue. We appreciate your prompt attention and look forward to your response.",
+      "evidence": {
+        "score_predicted": 0.217,
+        "score_true": 0.2042,
+        "score_gap": 0.0128,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.217
+          ],
+          [
+            "Technical Support",
+            0.2042
+          ],
+          [
+            "Customer Service",
+            0.1733
+          ]
+        ],
+        "body_chars": 484,
+        "n_known_terms": 117,
+        "terms_toward_predicted": [
+          [
+            "to",
+            0.112
+          ],
+          [
+            "rebooting the",
+            0.089
+          ],
+          [
+            "disruptions",
+            0.081
+          ],
+          [
+            "and running",
+            0.072
+          ],
+          [
+            "solution to",
+            0.059
+          ],
+          [
+            "scans but",
+            0.058
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "to resolve",
+            -0.116
+          ],
+          [
+            "data within",
+            -0.078
+          ],
+          [
+            "included",
+            -0.06
+          ],
+          [
+            "troubleshoot and",
+            -0.053
+          ],
+          [
+            "troubleshoot",
+            -0.051
+          ],
+          [
+            "potentially due",
+            -0.05
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "A hospital cannot access data in its systems after software updates. The ticket has no technical detail, and the biggest push comes from a common word.",
+      "why_model_predicted": "It is almost a tie (gap 0.013). The biggest pushes to IT Support are common words: 'to' (+0.112), 'rebooting the' (+0.089) and 'disruptions' (+0.081). 'to resolve' (-0.116) pushes to Technical Support."
+    },
+    {
+      "ticket_id": 2161,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Customer Support, I am reporting a serious problem with the digital campaign platform. The platform unexpectedly crashed, and it is suspected that the recent software update may be related to the issue. Our team tried restarting the system and clearing the cache, but the problem remains. We are worried that the downtime could affect current campaigns and lead to significant losses. Could you please prioritize this matter and provide a solution or workaround? Your prompt assistance in resolving this issue would be greatly appreciated.",
+      "evidence": {
+        "score_predicted": 0.3318,
+        "score_true": 0.2654,
+        "score_gap": 0.0664,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3318
+          ],
+          [
+            "Technical Support",
+            0.2654
+          ],
+          [
+            "Product Support",
+            0.0893
+          ]
+        ],
+        "body_chars": 544,
+        "n_known_terms": 141,
+        "terms_toward_predicted": [
+          [
+            "current",
+            0.122
+          ],
+          [
+            "suspected that",
+            0.09
+          ],
+          [
+            "issue would",
+            0.076
+          ],
+          [
+            "it",
+            0.07
+          ],
+          [
+            "unexpectedly",
+            0.06
+          ],
+          [
+            "and clearing",
+            0.06
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "platform",
+            -0.138
+          ],
+          [
+            "campaign",
+            -0.107
+          ],
+          [
+            "the",
+            -0.093
+          ],
+          [
+            "problem with",
+            -0.09
+          ],
+          [
+            "campaigns",
+            -0.061
+          ],
+          [
+            "significant",
+            -0.055
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "A campaign platform crashed after a software update. This is a Technical Support fault, but common words like 'current' and 'it' push to IT Support.",
+      "why_model_predicted": "'current' (+0.122, from 'current campaigns'), 'suspected that' (+0.090) and 'it' (+0.070) push to IT Support (gap 0.066). 'platform' (-0.138) and 'campaign' (-0.107) push to Technical Support."
+    },
+    {
+      "ticket_id": 2355,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, I am reporting an incident involving multiple affected products, including Microsoft Office, PostgreSQL, Git, and Oracle Database. The issue appears to be caused by a server overload or misconfiguration. After restarting the impacted services and applying recent updates, the problem remains. Your assistance in resolving this matter promptly would be highly valued. Kindly let me know if you need any further details or steps to help resolve the issue.",
+      "evidence": {
+        "score_predicted": 0.2489,
+        "score_true": 0.184,
+        "score_gap": 0.0649,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2489
+          ],
+          [
+            "Technical Support",
+            0.184
+          ],
+          [
+            "Product Support",
+            0.1347
+          ]
+        ],
+        "body_chars": 471,
+        "n_known_terms": 127,
+        "terms_toward_predicted": [
+          [
+            "server",
+            0.096
+          ],
+          [
+            "updates the",
+            0.076
+          ],
+          [
+            "office",
+            0.056
+          ],
+          [
+            "be caused",
+            0.052
+          ],
+          [
+            "remains your",
+            0.051
+          ],
+          [
+            "multiple",
+            0.051
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "postgresql",
+            -0.127
+          ],
+          [
+            "issue appears",
+            -0.067
+          ],
+          [
+            "incident",
+            -0.066
+          ],
+          [
+            "an incident",
+            -0.062
+          ],
+          [
+            "git",
+            -0.056
+          ],
+          [
+            "let me",
+            -0.049
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "An incident hits Microsoft Office, PostgreSQL, Git and Oracle Database, blamed on server overload. The word 'server' dominates, and the products are not told apart.",
+      "why_model_predicted": "'server' (+0.096), 'updates the' (+0.076) and 'office' (+0.056) push to IT Support (gap 0.065). 'postgresql' (-0.127), 'issue appears' (-0.067) and 'git' (-0.056) push to Technical Support."
+    },
+    {
+      "ticket_id": 2411,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Detected unauthorized attempts to access medical information.",
+      "evidence": {
+        "score_predicted": 0.1943,
+        "score_true": 0.1407,
+        "score_gap": 0.0536,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.1943
+          ],
+          [
+            "Product Support",
+            0.1795
+          ],
+          [
+            "Technical Support",
+            0.1407
+          ]
+        ],
+        "body_chars": 61,
+        "n_known_terms": 13,
+        "terms_toward_predicted": [
+          [
+            "detected",
+            0.164
+          ],
+          [
+            "access",
+            0.142
+          ],
+          [
+            "detected unauthorized",
+            0.103
+          ],
+          [
+            "to",
+            0.046
+          ],
+          [
+            "information",
+            0.038
+          ],
+          [
+            "medical information",
+            0.022
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "access medical",
+            -0.069
+          ],
+          [
+            "medical",
+            -0.053
+          ],
+          [
+            "attempts",
+            -0.048
+          ],
+          [
+            "unauthorized",
+            -0.042
+          ],
+          [
+            "unauthorized attempts",
+            -0.038
+          ],
+          [
+            "to access",
+            -0.013
+          ]
+        ]
+      },
+      "failure_category": "Very short ticket",
+      "category_rationale": "The ticket is one sentence: 61 characters and 13 known words ('Detected unauthorized attempts to access medical information.'). The topic also fits IT Support.",
+      "why_model_predicted": "'detected' (+0.164), 'access' (+0.142) and 'detected unauthorized' (+0.103) push to IT Support (gap 0.054). Product Support is second (0.180), so the model is not sure."
+    },
+    {
+      "ticket_id": 2613,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, I am reaching out to request assistance with updating and optimizing the integration of multiple products within our SaaS project management platform. Our objective is to enhance scalability and overall performance. At present, the system is experiencing slowdowns and inefficiencies due to outdated integrations. We would be grateful for guidance on how to achieve smooth integration and improved performance. Could you please provide a detailed step-by-step plan or recommend a specialist who can assist us? We look forward to your prompt response.",
+      "evidence": {
+        "score_predicted": 0.1987,
+        "score_true": 0.1554,
+        "score_gap": 0.0433,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.1987
+          ],
+          [
+            "Customer Service",
+            0.1827
+          ],
+          [
+            "Technical Support",
+            0.1554
+          ]
+        ],
+        "body_chars": 568,
+        "n_known_terms": 150,
+        "terms_toward_predicted": [
+          [
+            "enhance",
+            0.09
+          ],
+          [
+            "slowdowns",
+            0.089
+          ],
+          [
+            "improved performance",
+            0.077
+          ],
+          [
+            "request",
+            0.075
+          ],
+          [
+            "to enhance",
+            0.075
+          ],
+          [
+            "slowdowns and",
+            0.071
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "integrations",
+            -0.108
+          ],
+          [
+            "integration",
+            -0.079
+          ],
+          [
+            "step",
+            -0.063
+          ],
+          [
+            "platform",
+            -0.063
+          ],
+          [
+            "is experiencing",
+            -0.057
+          ],
+          [
+            "project",
+            -0.051
+          ]
+        ]
+      },
+      "failure_category": "Label could be IT Support",
+      "category_rationale": "The customer asks for a plan to update and improve integrations. No fault is reported. A request for advice fits IT Support.",
+      "why_model_predicted": "The gap is small (0.043). 'enhance' (+0.090), 'slowdowns' (+0.089) and 'request' (+0.075) push to IT Support. 'integrations' (-0.108) pushes to Technical Support. Customer Service is second (0.183)."
+    },
+    {
+      "ticket_id": 2620,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Facing sporadic login problems that are preventing access. This might be related to a recent update in the authentication process. I have already tried clearing the cache and resetting passwords, but the problem continues. I would appreciate prompt assistance in resolving this issue. Please advise on any further steps we should take to fix the problem.",
+      "evidence": {
+        "score_predicted": 0.2309,
+        "score_true": 0.1865,
+        "score_gap": 0.0444,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2309
+          ],
+          [
+            "Product Support",
+            0.2041
+          ],
+          [
+            "Technical Support",
+            0.1865
+          ]
+        ],
+        "body_chars": 354,
+        "n_known_terms": 97,
+        "terms_toward_predicted": [
+          [
+            "resetting passwords",
+            0.098
+          ],
+          [
+            "problems that",
+            0.079
+          ],
+          [
+            "should",
+            0.077
+          ],
+          [
+            "problems",
+            0.071
+          ],
+          [
+            "update",
+            0.065
+          ],
+          [
+            "steps we",
+            0.065
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "advise on",
+            -0.082
+          ],
+          [
+            "in",
+            -0.071
+          ],
+          [
+            "recent update",
+            -0.067
+          ],
+          [
+            "please advise",
+            -0.067
+          ],
+          [
+            "would appreciate",
+            -0.056
+          ],
+          [
+            "the",
+            -0.056
+          ]
+        ]
+      },
+      "failure_category": "Label could be IT Support",
+      "category_rationale": "The customer cannot log in and already reset passwords. Login and password problems are normal IT Support tickets.",
+      "why_model_predicted": "The gap is small (0.044). 'resetting passwords' (+0.098), 'problems that' (+0.079) and 'problems' (+0.071) push to IT Support. 'advise on' (-0.082) and 'recent update' (-0.067) push to Technical Support. Product Support is second (0.204)."
+    },
+    {
+      "ticket_id": 2818,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support team is documenting a problem with the marketing agency's website. The site is experiencing irregular outages, which we suspect are due to server overload. Our team attempted to fix the issue by restarting the server and clearing the cache, but unfortunately, this did not resolve the problem. The sporadic nature of the downtime makes it difficult to identify the underlying cause. We are worried that this may impact our online visibility and result in potential business loss. Could you please assist us in investigating this matter and providing guidance?",
+      "evidence": {
+        "score_predicted": 0.2776,
+        "score_true": 0.2463,
+        "score_gap": 0.0313,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2776
+          ],
+          [
+            "Technical Support",
+            0.2463
+          ],
+          [
+            "Customer Service",
+            0.101
+          ]
+        ],
+        "body_chars": 576,
+        "n_known_terms": 149,
+        "terms_toward_predicted": [
+          [
+            "server",
+            0.17
+          ],
+          [
+            "website",
+            0.066
+          ],
+          [
+            "it",
+            0.063
+          ],
+          [
+            "agency website",
+            0.063
+          ],
+          [
+            "and clearing",
+            0.053
+          ],
+          [
+            "to server",
+            0.051
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "the",
+            -0.093
+          ],
+          [
+            "in investigating",
+            -0.092
+          ],
+          [
+            "problem with",
+            -0.08
+          ],
+          [
+            "which we",
+            -0.059
+          ],
+          [
+            "is experiencing",
+            -0.056
+          ],
+          [
+            "in",
+            -0.053
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "A marketing agency's website goes down, blamed on server overload. The server was restarted. The words are about the server and the website.",
+      "why_model_predicted": "The gap is small (0.031). 'server' (+0.170), 'website' (+0.066) and 'agency website' (+0.063) push to IT Support. 'in investigating' (-0.092) and 'problem with' (-0.080) push to Technical Support."
+    },
+    {
+      "ticket_id": 2890,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Customer Support, I am submitting a report regarding incidents involving multiple failures in software and hardware components that have disrupted our project management SaaS. These issues appear to have originated after a recent system update, leading to conflicts within the system. Despite efforts such as rebooting devices and reinstalling the affected software, the problems continue. The malfunctions are widespread, impacting several critical elements of the project management tools and significantly hindering our productivity and workflow.",
+      "evidence": {
+        "score_predicted": 0.3041,
+        "score_true": 0.2374,
+        "score_gap": 0.0667,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3041
+          ],
+          [
+            "Technical Support",
+            0.2374
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1309
+          ]
+        ],
+        "body_chars": 554,
+        "n_known_terms": 129,
+        "terms_toward_predicted": [
+          [
+            "malfunctions",
+            0.118
+          ],
+          [
+            "software the",
+            0.105
+          ],
+          [
+            "the problems",
+            0.097
+          ],
+          [
+            "tools",
+            0.075
+          ],
+          [
+            "problems continue",
+            0.073
+          ],
+          [
+            "the affected",
+            0.072
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "project",
+            -0.099
+          ],
+          [
+            "report regarding",
+            -0.079
+          ],
+          [
+            "the project",
+            -0.067
+          ],
+          [
+            "report",
+            -0.06
+          ],
+          [
+            "disrupted our",
+            -0.057
+          ],
+          [
+            "management",
+            -0.054
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "Software and hardware parts fail in a project management tool after an update. The ticket uses generic words ('malfunctions', 'problems', 'tools') and names no error.",
+      "why_model_predicted": "'malfunctions' (+0.118), 'software the' (+0.105), 'the problems' (+0.097) and 'tools' (+0.075) push to IT Support (gap 0.067). 'project' (-0.099) and 'report regarding' (-0.079) push to Technical Support."
+    },
+    {
+      "ticket_id": 3049,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Customer Support, I am submitting a request to modify the integration of data analytics tools to enhance investment strategies across various software and hardware platforms. The current system's limited capacity to deliver real-time analytical insights hampers our ability to make well-informed investment decisions. By integrating advanced data analytics tools, we aim to gain a comprehensive understanding of market trends, enabling us to make data-driven decisions that will foster business growth. Additionally, the integration of these data analytics tools will...",
+      "evidence": {
+        "score_predicted": 0.1944,
+        "score_true": 0.0899,
+        "score_gap": 0.1045,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.1944
+          ],
+          [
+            "Customer Service",
+            0.1926
+          ],
+          [
+            "General Inquiry",
+            0.1828
+          ]
+        ],
+        "body_chars": 575,
+        "n_known_terms": 124,
+        "terms_toward_predicted": [
+          [
+            "tools",
+            0.214
+          ],
+          [
+            "to make",
+            0.106
+          ],
+          [
+            "current",
+            0.104
+          ],
+          [
+            "the integration",
+            0.098
+          ],
+          [
+            "enhance investment",
+            0.093
+          ],
+          [
+            "various software",
+            0.089
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "data",
+            -0.14
+          ],
+          [
+            "analytics",
+            -0.13
+          ],
+          [
+            "integration",
+            -0.074
+          ],
+          [
+            "market",
+            -0.072
+          ],
+          [
+            "analytics tools",
+            -0.049
+          ],
+          [
+            "these",
+            -0.046
+          ]
+        ]
+      },
+      "failure_category": "Label could be IT Support",
+      "category_rationale": "The customer asks to change how data analytics tools are integrated to improve investment strategy. No fault is reported, so the ticket could fit several departments.",
+      "why_model_predicted": "The model is unsure: IT Support 0.194, Customer Service 0.193, General Inquiry 0.183. 'tools' (+0.214), 'to make' (+0.106) and 'current' (+0.104) push to IT Support. 'data' (-0.140) and 'analytics' (-0.130) push to Technical Support."
+    },
+    {
+      "ticket_id": 3450,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "The marketing agency's website is experiencing sluggish loading times. The recent plugin updates might be the cause. Cache has been cleared, and the server has been restarted, but there has been no improvement.",
+      "evidence": {
+        "score_predicted": 0.3354,
+        "score_true": 0.1987,
+        "score_gap": 0.1367,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3354
+          ],
+          [
+            "Technical Support",
+            0.1987
+          ],
+          [
+            "Product Support",
+            0.1333
+          ]
+        ],
+        "body_chars": 210,
+        "n_known_terms": 56,
+        "terms_toward_predicted": [
+          [
+            "loading times",
+            0.139
+          ],
+          [
+            "server",
+            0.121
+          ],
+          [
+            "sluggish",
+            0.099
+          ],
+          [
+            "has been",
+            0.097
+          ],
+          [
+            "website",
+            0.095
+          ],
+          [
+            "agency website",
+            0.089
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "and the",
+            -0.088
+          ],
+          [
+            "is experiencing",
+            -0.08
+          ],
+          [
+            "there",
+            -0.075
+          ],
+          [
+            "cleared",
+            -0.067
+          ],
+          [
+            "the",
+            -0.059
+          ],
+          [
+            "loading",
+            -0.042
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "A marketing agency's website loads slowly after plugin updates. The cache was cleared and the server restarted. The words are about the server and loading.",
+      "why_model_predicted": "'loading times' (+0.139), 'server' (+0.121) and 'sluggish' (+0.099) push to IT Support (gap 0.137). 'and the' (-0.088) and 'is experiencing' (-0.080) push to Technical Support. The ticket is short (210 characters)."
+    },
+    {
+      "ticket_id": 3625,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, reporting an issue with digital marketing tools including Adobe Sign, PrestaShop, and Elasticsearch. These tools have ceased functioning correctly, causing disruptions in campaign operations. The problem appears to be related to recent updates and network connectivity issues. Attempts to resolve included restarting the affected devices, verifying internet access, and uninstalling and reinstalling the software; however, none of these measures resolved the problem. Your prompt assistance in investigating this matter would be highly valued.",
+      "evidence": {
+        "score_predicted": 0.3294,
+        "score_true": 0.2972,
+        "score_gap": 0.0322,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.3294
+          ],
+          [
+            "Technical Support",
+            0.2972
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1186
+          ]
+        ],
+        "body_chars": 561,
+        "n_known_terms": 130,
+        "terms_toward_predicted": [
+          [
+            "tools",
+            0.16
+          ],
+          [
+            "access and",
+            0.109
+          ],
+          [
+            "marketing tools",
+            0.096
+          ],
+          [
+            "network",
+            0.092
+          ],
+          [
+            "the affected",
+            0.077
+          ],
+          [
+            "disruptions",
+            0.068
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "these",
+            -0.104
+          ],
+          [
+            "campaign",
+            -0.102
+          ],
+          [
+            "in investigating",
+            -0.097
+          ],
+          [
+            "with digital",
+            -0.093
+          ],
+          [
+            "elasticsearch",
+            -0.084
+          ],
+          [
+            "in",
+            -0.056
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "Marketing tools (Adobe Sign, PrestaShop, Elasticsearch) stopped working after updates and network problems. The generic word 'tools' decides the result. This ticket is almost the same as 4029.",
+      "why_model_predicted": "It is almost a tie (gap 0.032). 'tools' (+0.160), 'access and' (+0.109) and 'marketing tools' (+0.096) push to IT Support. 'campaign' (-0.102) and 'elasticsearch' (-0.084) push to Technical Support."
+    },
+    {
+      "ticket_id": 3915,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer support is currently addressing intermittent failures in the data analytics system, which may be caused by software incompatibility or hardware issues. After restarting the affected devices and updating the software, the problem persists. We kindly request your assistance in resolving this matter promptly to minimize potential losses. Please advise on the next steps to take. We appreciate your prompt attention to this issue and look forward to your response.",
+      "evidence": {
+        "score_predicted": 0.2752,
+        "score_true": 0.2136,
+        "score_gap": 0.0616,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2752
+          ],
+          [
+            "Technical Support",
+            0.2136
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1251
+          ]
+        ],
+        "body_chars": 471,
+        "n_known_terms": 124,
+        "terms_toward_predicted": [
+          [
+            "software the",
+            0.136
+          ],
+          [
+            "request",
+            0.096
+          ],
+          [
+            "or hardware",
+            0.095
+          ],
+          [
+            "the affected",
+            0.093
+          ],
+          [
+            "to minimize",
+            0.075
+          ],
+          [
+            "devices and",
+            0.073
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "incompatibility",
+            -0.153
+          ],
+          [
+            "software incompatibility",
+            -0.108
+          ],
+          [
+            "incompatibility or",
+            -0.092
+          ],
+          [
+            "advise on",
+            -0.079
+          ],
+          [
+            "we kindly",
+            -0.077
+          ],
+          [
+            "in",
+            -0.068
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "An analytics system fails on and off, from software incompatibility or hardware. The ticket uses generic phrases like 'software the' and 'request'.",
+      "why_model_predicted": "'software the' (+0.136), 'request' (+0.096) and 'or hardware' (+0.095) push to IT Support (gap 0.062). 'incompatibility' (-0.153) is in the ticket and pushes to Technical Support, but it is not enough."
+    },
+    {
+      "ticket_id": 3936,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer support, composing a report on notable decline in system performance observed across multiple devices and software. The problem may have originated from recent configuration modifications. The suspected primary cause is incompatible updates disrupting hardware-software integration. To address this, we reverted the recent updates, verified hardware operation, and restarted the affected services. Despite these measures, the issue remains unresolved. We would appreciate any assistance you can provide to help resolve this matter.",
+      "evidence": {
+        "score_predicted": 0.2408,
+        "score_true": 0.1831,
+        "score_gap": 0.0577,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.2408
+          ],
+          [
+            "Technical Support",
+            0.1831
+          ],
+          [
+            "Product Support",
+            0.1621
+          ]
+        ],
+        "body_chars": 540,
+        "n_known_terms": 122,
+        "terms_toward_predicted": [
+          [
+            "software the",
+            0.117
+          ],
+          [
+            "multiple devices",
+            0.103
+          ],
+          [
+            "and software",
+            0.084
+          ],
+          [
+            "the affected",
+            0.08
+          ],
+          [
+            "integration to",
+            0.08
+          ],
+          [
+            "devices and",
+            0.063
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "despite these",
+            -0.068
+          ],
+          [
+            "report",
+            -0.067
+          ],
+          [
+            "the",
+            -0.057
+          ],
+          [
+            "unresolved we",
+            -0.055
+          ],
+          [
+            "these",
+            -0.054
+          ],
+          [
+            "verified",
+            -0.053
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "System performance drops across devices and software after updates. The ticket uses generic words and names no product.",
+      "why_model_predicted": "'software the' (+0.117), 'multiple devices' (+0.103) and 'and software' (+0.084) push to IT Support (gap 0.058). 'despite these' (-0.068) and 'report' (-0.067) push to Technical Support but are weak."
+    },
+    {
+      "ticket_id": 3949,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, requesting assistance with implementing advanced security measures to safeguard medical data. It is vital to maintain the confidentiality and integrity of patient information. We seek to update our systems and devices with the most recent security standards. Kindly offer guidance on best practices and procedures for securing medical data across hospital platforms and devices. Thank you for your assistance; I look forward to your prompt response. Your support is appreciated.",
+      "evidence": {
+        "score_predicted": 0.1756,
+        "score_true": 0.1242,
+        "score_gap": 0.0514,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.1756
+          ],
+          [
+            "Product Support",
+            0.14
+          ],
+          [
+            "Technical Support",
+            0.1242
+          ]
+        ],
+        "body_chars": 496,
+        "n_known_terms": 121,
+        "terms_toward_predicted": [
+          [
+            "devices",
+            0.119
+          ],
+          [
+            "and integrity",
+            0.11
+          ],
+          [
+            "offer guidance",
+            0.107
+          ],
+          [
+            "advanced security",
+            0.083
+          ],
+          [
+            "confidentiality and",
+            0.082
+          ],
+          [
+            "of patient",
+            0.073
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "for securing",
+            -0.103
+          ],
+          [
+            "our systems",
+            -0.093
+          ],
+          [
+            "data",
+            -0.083
+          ],
+          [
+            "measures to",
+            -0.078
+          ],
+          [
+            "best",
+            -0.068
+          ],
+          [
+            "security",
+            -0.068
+          ]
+        ]
+      },
+      "failure_category": "Label could be IT Support",
+      "category_rationale": "The customer asks for best practices to protect medical data. No fault is reported. Security advice fits IT Support.",
+      "why_model_predicted": "The model is unsure: IT Support 0.176, Product Support 0.140, Technical Support 0.124. 'devices' (+0.119), 'and integrity' (+0.110) and 'offer guidance' (+0.107) push to IT Support. 'for securing' (-0.103) and 'data' (-0.083) push to Technical Support."
+    },
+    {
+      "ticket_id": 4029,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Customer Support, reporting an issue with digital marketing tools such as Adobe Sign, PrestaShop, and Elasticsearch. These tools have ceased functioning correctly, causing disruptions in campaign processes. The problem appears to be related to recent updates and network connectivity issues. We have attempted troubleshooting by restarting affected devices, verifying internet access, and reinstalling the software, but unfortunately, these measures did not resolve the problem. Your prompt assistance in investigating this matter would be highly appreciated.",
+      "evidence": {
+        "score_predicted": 0.337,
+        "score_true": 0.3221,
+        "score_gap": 0.0149,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.337
+          ],
+          [
+            "Technical Support",
+            0.3221
+          ],
+          [
+            "Product Support",
+            0.1054
+          ]
+        ],
+        "body_chars": 559,
+        "n_known_terms": 136,
+        "terms_toward_predicted": [
+          [
+            "tools",
+            0.161
+          ],
+          [
+            "access and",
+            0.11
+          ],
+          [
+            "marketing tools",
+            0.097
+          ],
+          [
+            "network",
+            0.093
+          ],
+          [
+            "disruptions",
+            0.069
+          ],
+          [
+            "connectivity",
+            0.068
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "these",
+            -0.105
+          ],
+          [
+            "campaign",
+            -0.103
+          ],
+          [
+            "in investigating",
+            -0.098
+          ],
+          [
+            "with digital",
+            -0.094
+          ],
+          [
+            "elasticsearch",
+            -0.085
+          ],
+          [
+            "issues we",
+            -0.064
+          ]
+        ]
+      },
+      "failure_category": "Generic words",
+      "category_rationale": "Marketing tools (Adobe Sign, PrestaShop, Elasticsearch) stopped working after updates and network problems. The generic word 'tools' decides the result. This ticket is almost the same as 3625.",
+      "why_model_predicted": "It is almost a tie (gap 0.015). 'tools' (+0.161), 'access and' (+0.110) and 'marketing tools' (+0.097) push to IT Support. 'campaign' (-0.103) and 'elasticsearch' (-0.085) push to Technical Support."
+    },
+    {
+      "ticket_id": 4255,
+      "true_label": "Technical Support",
+      "recommended_department": "IT Support",
+      "body": "Dear Customer Support, I am reporting that our digital marketing campaigns are being disrupted due to connectivity software problems. It appears that the issues originated from modem failure related to Firebase. We have tried troubleshooting by restarting devices, updating software, and checking network stability, but unfortunately, none of these efforts have resolved the problem. These disruptions are causing significant losses and hindering our ability to achieve marketing objectives. Your assistance would be highly appreciated.",
+      "evidence": {
+        "score_predicted": 0.4052,
+        "score_true": 0.2329,
+        "score_gap": 0.1723,
+        "top3_scores": [
+          [
+            "IT Support",
+            0.4052
+          ],
+          [
+            "Technical Support",
+            0.2329
+          ],
+          [
+            "Service Outages and Maintenance",
+            0.1165
+          ]
+        ],
+        "body_chars": 536,
+        "n_known_terms": 123,
+        "terms_toward_predicted": [
+          [
+            "firebase",
+            0.17
+          ],
+          [
+            "marketing",
+            0.103
+          ],
+          [
+            "network",
+            0.097
+          ],
+          [
+            "disruptions",
+            0.072
+          ],
+          [
+            "connectivity",
+            0.071
+          ],
+          [
+            "it",
+            0.07
+          ]
+        ],
+        "terms_toward_true": [
+          [
+            "these",
+            -0.109
+          ],
+          [
+            "campaigns",
+            -0.061
+          ],
+          [
+            "significant",
+            -0.055
+          ],
+          [
+            "modem",
+            -0.052
+          ],
+          [
+            "software and",
+            -0.051
+          ],
+          [
+            "disruptions are",
+            -0.05
+          ]
+        ]
+      },
+      "failure_category": "Network and server words",
+      "category_rationale": "Marketing campaigns stop because of connection problems and a modem failure tied to Firebase. The words are about the network, the connection and a product name the model links to IT.",
+      "why_model_predicted": "The model is confident (gap 0.172). 'firebase' (+0.170), 'marketing' (+0.103), 'network' (+0.097) and 'connectivity' (+0.071) push to IT Support. 'these' (-0.109) and 'campaigns' (-0.061) push to Technical Support."
+    }
+  ],
+  "categories": [
+    {
+      "name": "Network and server words",
+      "definition": "The words that push the model to IT Support are network, server, connection or hardware words. The ticket is really about a product, an app or a device fault.",
+      "likely_performance_impact": "10 of 30 inspected errors. 3 are confident errors (gap above 0.15).",
+      "addressable_by_model_or_preprocessing": "Partly",
+      "addressable_reason": "Stronger regularization or different word weighting could reduce how much one word like 'network' decides. The risk is high. These words are real IT Support signals, and 107 IT Support tickets already go to Technical Support. I did not test this on real IT Support tickets."
+    },
+    {
+      "name": "Generic words",
+      "definition": "The push to IT Support comes from common words like 'tools', 'problems', 'current', 'it' or 'marketing'. Nothing technical in the ticket separates the two departments.",
+      "likely_performance_impact": "12 of 30 inspected errors (40%). 6 are near ties (gap under 0.05), so small changes can flip them.",
+      "addressable_by_model_or_preprocessing": "Yes",
+      "addressable_reason": "Common words carry a push to IT Support. Removing very common words (stop words or a lower max_df) or using stronger regularization reduces it. Risk: lowercasing makes the pronoun 'it' look like the acronym 'IT', so removing 'it' can remove a real IT Support signal."
+    },
+    {
+      "name": "Very short ticket",
+      "definition": "The ticket is one short sentence (about 100 characters or less, 21 or fewer words the model knows). A few words decide the result.",
+      "likely_performance_impact": "3 of 30 inspected errors (10%). 2 are confident errors from very few words.",
+      "addressable_by_model_or_preprocessing": "No",
+      "addressable_reason": "The ticket has too little text. No model setting adds information. It needs a longer description or a human check."
+    },
+    {
+      "name": "Label could be IT Support",
+      "definition": "The ticket is about access, security or a request for advice, not a fault. IT Support is a reasonable department, so the true label is debatable.",
+      "likely_performance_impact": "5 of 30 inspected errors (17%). Some of these may be label problems, not model errors.",
+      "addressable_by_model_or_preprocessing": "No",
+      "addressable_reason": "The text supports the model's choice. Forcing these back to Technical Support would fit unclear labels and could hurt IT Support recall."
+    }
+  ],
+  "task2_candidate": {
+    "category": "Generic words",
+    "single_change": "Remove very common words from the text features (stop words or a lower max_df) and retrain on the training split.",
+    "expected_improvement": "Some of the 12 tickets, mainly the 6 near ties, should move to Technical Support.",
+    "possible_regression": "IT Support could lose recall if 'it' or other useful common words are removed. Check the 107 IT Support tickets already sent to Technical Support."
+  }
+}

@@ -1,0 +1,5 @@
+time: 2026-10-20T19:23:58
+baseline_sha256: df64b94f39573bd7332844fb6b393659449a39160596b77b32823bdbc2a5ab94
+candidate_sha256: cef0c66ae9cccca2c28486fb64f71ee04e1aa2677490cab8ab674e70edcbc4a4
+task2_decision: keep
+selection_rule: Carry the candidate forward only if the Task 2 decision was keep AND the candidate's test macro-F1 is higher than the baseline's. Otherwise carry the baseline forward.

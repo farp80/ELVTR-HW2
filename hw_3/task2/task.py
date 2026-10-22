@@ -13,14 +13,11 @@ from shared.classes.ticket_routing_classifier import (
     TicketRoutingClassifier,
 )
 
-HW3_ROOT = ROOT / "hw_3"
-CLEANED_DF_PATH = r"D:\ELVTR\homeworks\ELVTR-HW2\Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
-MODEL_PATH = HW3_ROOT / "Fidel Alejandro Rosell Perez - hw3_ml_baseline.pkl"
-PREDICTION_PATH = HW3_ROOT / "Fidel Alejandro Rosell Perez - validation_predictions.csv"
-SPLIT_PATH = (
-    HW3_ROOT
-    / r"D:\ELVTR\homeworks\ELVTR-HW2\hw_3\Fidel Alejandro Rosell Perez - split_manifest.csv"
-)
+DATA_ROOT = ROOT / "hw_3"
+CLEANED_DF_PATH = DATA_ROOT / "Fidel Alejandro Rosell Perez - support_tickets_cleaned.csv"
+MODEL_PATH = DATA_ROOT / "Fidel Alejandro Rosell Perez - hw3_ml_baseline.pkl"
+PREDICTION_PATH = DATA_ROOT / "Fidel Alejandro Rosell Perez - validation_predictions.csv"
+SPLIT_PATH = DATA_ROOT / "Fidel Alejandro Rosell Perez - split_manifest.csv"
 
 cleaned_df = pd.read_csv(CLEANED_DF_PATH)
 split_df = pd.read_csv(SPLIT_PATH)

@@ -130,6 +130,7 @@ class ClassificationMetricEvaluator:
         }
 
     def length_cutoffs(self, lengths):
+        # we are using third for the slicing.
         short_cutoff = lengths.quantile(0.33)
         medium_cutoff = lengths.quantile(0.66)
         return short_cutoff, medium_cutoff

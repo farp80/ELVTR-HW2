@@ -1,0 +1,130 @@
+{
+  "prompt": "You write an internal summary of a customer support ticket for a human support agent.\n\nUse only the information in the ticket text. Do not add facts. Do not guess. Do not suggest a solution. Do not say which department should handle the ticket.\n\nReturn a JSON object with exactly these fields:\n- summary: one or two short sentences describing the reported issue.\n- customer_request: everything the customer asks for, in one or two sentences. Include every request and every question.\n- missing_information: a list of details the customer did not give but the support agent needs to act on the request. Do not list what the customer is asking for. Use an empty list if nothing is clearly missing.",
+  "base": "Iteration 1 prompt (kept)",
+  "tickets": [
+    {
+      "ticket_id": 28907,
+      "department": "Billing and Payments",
+      "raw_output": "{\n  \"summary\": \"Customer requests assistance with billing adjustment related to AWS Management Service usage.\",\n  \"customer_request\": \"Request for a comprehensive review of the charges linked to the account, detailed breakdown of billed items, usage metrics, and a written explanation for each charge where discrepancies have been noted. Inquiry for any available options for invoicing adjustments under the current service agreement.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Customer requests assistance with billing adjustment related to AWS Management Service usage.",
+        "customer_request": "Request for a comprehensive review of the charges linked to the account, detailed breakdown of billed items, usage metrics, and a written explanation for each charge where discrepancies have been noted. Inquiry for any available options for invoicing adjustments under the current service agreement.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28399,
+      "department": "Customer Service",
+      "raw_output": "{\n  \"summary\": \"Customer requests assistance with establishing a ticketing system and enhancing server management protocols.\",\n  \"customer_request\": \"Request for recommendations on a ticketing system customized for organizational requirements, including prioritization of incoming requests and smooth upgrade process. Request for insights into refining existing server administrative processes, including software applications, periodic system inspections, and specific tactics for better server management. Request for a consultation session with a specialist.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Customer requests assistance with establishing a ticketing system and enhancing server management protocols.",
+        "customer_request": "Request for recommendations on a ticketing system customized for organizational requirements, including prioritization of incoming requests and smooth upgrade process. Request for insights into refining existing server administrative processes, including software applications, periodic system inspections, and specific tactics for better server management. Request for a consultation session with a specialist.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28381,
+      "department": "General Inquiry",
+      "raw_output": "{\n  \"summary\": \"The customer is seeking expert advice and consultation from IT Consulting Service to address challenges in software development project management.\",\n  \"customer_request\": \"architectural planning, performance optimization, server setup, best practices for infrastructure management and deployment, fine-tuning architecture for better load balancing and enhanced reliability.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "The customer is seeking expert advice and consultation from IT Consulting Service to address challenges in software development project management.",
+        "customer_request": "architectural planning, performance optimization, server setup, best practices for infrastructure management and deployment, fine-tuning architecture for better load balancing and enhanced reliability.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28921,
+      "department": "Human Resources",
+      "raw_output": "{\n  \"summary\": \"Request for enhanced user interface and data analysis capabilities in the internal human resources management system.\",\n  \"customer_request\": \"Request for a redesigned user interface that is more intuitive and visually appealing, and for advanced data analysis tools that allow for easier data entry and retrieval.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Request for enhanced user interface and data analysis capabilities in the internal human resources management system.",
+        "customer_request": "Request for a redesigned user interface that is more intuitive and visually appealing, and for advanced data analysis tools that allow for easier data entry and retrieval.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28736,
+      "department": "IT Support",
+      "raw_output": "{\n  \"summary\": \"The customer seeks advice on server management improvements and advanced technologies to enhance their IT setup.\",\n  \"customer_request\": \"Implement advanced server technologies, refine configuration techniques, and ensure peak reliability and uptime. Provide a systematic outline for incorporating these advancements while mitigating risks or minimizing downtime. Ensure the team is well-equipped to embrace and sustain these modifications, including necessary training or resource allocations. Share case studies or ideals related to similar implementations that yielded a positive impact.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "The customer seeks advice on server management improvements and advanced technologies to enhance their IT setup.",
+        "customer_request": "Implement advanced server technologies, refine configuration techniques, and ensure peak reliability and uptime. Provide a systematic outline for incorporating these advancements while mitigating risks or minimizing downtime. Ensure the team is well-equipped to embrace and sustain these modifications, including necessary training or resource allocations. Share case studies or ideals related to similar implementations that yielded a positive impact.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28763,
+      "department": "Product Support",
+      "raw_output": "{\n  \"summary\": \"Customer reports persistent flickering issue with Samsung QLED QN90A TV, seeking professional assistance for resolution.\",\n  \"customer_request\": \"Provide guidance on next steps to resolve flickering issue, including at-home diagnosis instructions or arranging a qualified technician's assessment. Provide information about repair policies and warranty coverage for such issues.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Customer reports persistent flickering issue with Samsung QLED QN90A TV, seeking professional assistance for resolution.",
+        "customer_request": "Provide guidance on next steps to resolve flickering issue, including at-home diagnosis instructions or arranging a qualified technician's assessment. Provide information about repair policies and warranty coverage for such issues.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28563,
+      "department": "Returns and Exchanges",
+      "raw_output": "{\n  \"summary\": \"Customer is requesting an exchange for a new Canon PIXMA MG3620 printer due to persistent print quality issues.\",\n  \"customer_request\": \"Request for an exchange of the Canon PIXMA MG3620 printer, provide steps for initiating the exchange, and any specific terms or conditions.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Customer is requesting an exchange for a new Canon PIXMA MG3620 printer due to persistent print quality issues.",
+        "customer_request": "Request for an exchange of the Canon PIXMA MG3620 printer, provide steps for initiating the exchange, and any specific terms or conditions.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28571,
+      "department": "Sales and Pre-Sales",
+      "raw_output": "{\n  \"summary\": \"Customer is seeking clarification on technical specifications, delivery timeline, and return policy for the Cisco Router ISR4331.\",\n  \"customer_request\": \"Clarification on technical specifications, delivery timeline, and return policy for the Cisco Router ISR4331.\",\n  \"missing_information\": [\"Technical specifications\", \"Delivery timeline\", \"Return policy\"]\n}",
+      "output": {
+        "summary": "Customer is seeking clarification on technical specifications, delivery timeline, and return policy for the Cisco Router ISR4331.",
+        "customer_request": "Clarification on technical specifications, delivery timeline, and return policy for the Cisco Router ISR4331.",
+        "missing_information": [
+          "Technical specifications",
+          "Delivery timeline",
+          "Return policy"
+        ]
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 28642,
+      "department": "Service Outages and Maintenance",
+      "raw_output": "{\n  \"summary\": \"Customer is concerned about potential service outages during scheduled AWS maintenance and requests specific details on the scope and duration of the maintenance, as well as any recommended contingency plans.\",\n  \"customer_request\": \"Provide specific details on the expected timeline and any potential windows during which we might experience reduced functionality or a complete outage. Request any recommendations for contingency plans or preparatory tasks to mitigate downtime risks.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Customer is concerned about potential service outages during scheduled AWS maintenance and requests specific details on the scope and duration of the maintenance, as well as any recommended contingency plans.",
+        "customer_request": "Provide specific details on the expected timeline and any potential windows during which we might experience reduced functionality or a complete outage. Request any recommendations for contingency plans or preparatory tasks to mitigate downtime risks.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    },
+    {
+      "ticket_id": 29206,
+      "department": "Technical Support",
+      "raw_output": "{\n  \"summary\": \"Need guidance on implementing custom workflows and priority field modifications in Jira Software 8.20 to align with updated company policies.\",\n  \"customer_request\": \"We need to modify our existing workflows in Jira Software 8.20 to incorporate a customized priority field and dynamic adjustment features based on real-time status and project goals. We are looking for technical guidance on the best approach, potential timelines, and any necessary plugins or configuration assistance.\",\n  \"missing_information\": []\n}",
+      "output": {
+        "summary": "Need guidance on implementing custom workflows and priority field modifications in Jira Software 8.20 to align with updated company policies.",
+        "customer_request": "We need to modify our existing workflows in Jira Software 8.20 to incorporate a customized priority field and dynamic adjustment features based on real-time status and project goals. We are looking for technical guidance on the best approach, potential timelines, and any necessary plugins or configuration assistance.",
+        "missing_information": []
+      },
+      "schema_error": null,
+      "warnings": []
+    }
+  ]
+}
