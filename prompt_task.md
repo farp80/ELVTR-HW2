@@ -2,26 +2,25 @@
 Senior Software Engineer
 
 ## 2. Task ## 
-- I need to review Homework4 and all its Tasks.
-- No assert, no display, no show in the .py files.
-- No elegant wording in the solutions or explanations. Just Plain English.
-- At the end do a checklist or rubric based on the current tasks.
+1. Create subfolders in hw_5 from the requirements.
+2. Inside each subfolder, include a file with the reasoning behind the decision in the Logic.
+3. Include the Logic in that file as well or create a separate file with the logic.
 
 ## 3. Context ##
-- This is for model iterations and prompt engineering.
-- The domain is related to Ticketing System.
-- Rule: use Plain English
+- This is a homework assignment.
+- the student NEEDS to understand the concepts 100%.
 
 ## 4. Constraints ## 
 - IMPORTANT: No more than 200 words per explanations.
+- No .py created in any subfolders.
+- Plain English, do not use fancy words. Explanation MUST be assertive and self-explanatories.
 
 ## 5. Uncertainty ##
 
 ## 6. Input ##
-- Check every Task_N_cursor.md file inside each TaskN.
+WEEK_5_ASSIGNMENT.md
 
 ## 7. Output ##
-- A .md file with a checklist based D:\ELVTR\homeworks\ELVTR-HW2\hw_4\WEEK_4_ASSIGNMENT.md
-  It can have two columns. 
+ - All files inside the folders MUST be .md
 
 

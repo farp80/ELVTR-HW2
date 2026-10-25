@@ -1,3 +1,17 @@
 *.csv
 *.pkl
 __pycache__/
+*.pdf
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.webp
+*.svg
+*.eps
+*.pdf
+*.png
+*.txt
+/lancedb/
