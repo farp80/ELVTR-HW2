@@ -1,0 +1,632 @@
+[
+  {
+    "query_id": "Q001",
+    "query": "Our managed environment in eu-west is responding inconsistently today. Is there a current regional incident, and when was its status last updated?",
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "KB-AWS-MAINT-001-0",
+        "distance": 0.29421424865722656,
+        "content": "## Event summary\n\nMaintenance event `AMS-2023-Q4-NET-17` is a scheduled AWS Management Service\nnetwork-control update planned for 18 November 2023 from 02:00 UTC to 04:00\nUTC. The change window is expected to affect management-plane actions only. The\nnotice states that running customer workloads should remain online, but managed\nscaling actions, configuration pushes, and health-status propagation may pause\nbriefly during the event.",
+        "metadata": {
+          "article_id": "KB-AWS-MAINT-001",
+          "title": "Maintenance Notice AMS-2023-Q4-NET-17 for AWS Management Service",
+          "chunk_position": 0
+        },
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "chunk_id": "KB-AWS-MAINT-001-1",
+        "distance": 0.29690247774124146,
+        "content": "## Expected impact\n\nDuring the window, customers may see delayed dashboard status refreshes and up\nto two short control-plane interruptions, each not expected to exceed 10\nminutes. The event does not call for customer-side service restarts. If a\ncustomer relies on just-in-time infrastructure changes during the window, those\nchanges should be rescheduled when possible.",
+        "metadata": {
+          "article_id": "KB-AWS-MAINT-001",
+          "title": "Maintenance Notice AMS-2023-Q4-NET-17 for AWS Management Service",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "chunk_id": "KB-AWS-MAINT-001-2",
+        "distance": 0.29953694343566895,
+        "content": "## What support provides\n\nSupport should quote the event ID, planned start and end time, and the managed\nservice components affected. Updates are posted at event start, every 30\nminutes while work remains active, and at completion. If the interruption\nexceeds the notice threshold, support opens an incident bridge and posts an\nunscheduled-impact update tied to the same event ID.",
+        "metadata": {
+          "article_id": "KB-AWS-MAINT-001",
+          "title": "Maintenance Notice AMS-2023-Q4-NET-17 for AWS Management Service",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "chunk_id": "KB-AWS-NEG-003-2",
+        "distance": 0.31823742389678955,
+        "content": "## What the customer provides\n\nCustomers usually only need to provide the region or managed environment they\nare asking about. If they report a symptom, a timestamp and short impact\ndescription help support compare it with the live status feed.",
+        "metadata": {
+          "article_id": "KB-AWS-NEG-003",
+          "title": "General AWS Management Service Health and Status Updates",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "chunk_id": "KB-AWS-NEG-003-0",
+        "distance": 0.3213311433792114,
+        "content": "## Overview\n\nUse this article for general questions about current platform status, broad\nservice health summaries, and unscheduled impact notices affecting AWS\nManagement Service. It is intended for customers asking whether the managed\nplatform is presently healthy, degraded, or recovering.",
+        "metadata": {
+          "article_id": "KB-AWS-NEG-003",
+          "title": "General AWS Management Service Health and Status Updates",
+          "chunk_position": 0
+        },
+        "relevant": true
+      },
+      {
+        "rank": 6,
+        "chunk_id": "KB-AWS-NEG-003-1",
+        "distance": 0.32685256004333496,
+        "content": "## What support provides\n\nSupport can summarize whether the service is operating normally, whether an\nunscheduled incident is open, and whether any region-wide degradations are under\ninvestigation. General health updates include the incident state, affected\ncomponents, and the time of the last published update.",
+        "metadata": {
+          "article_id": "KB-AWS-NEG-003",
+          "title": "General AWS Management Service Health and Status Updates",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 7,
+        "chunk_id": "KB-AWS-MAINT-002-1",
+        "distance": 0.33500558137893677,
+        "content": "## What the customer should do before the window\n\nCustomers should review whether any planned deployments, scaling changes, or\nconfiguration edits can be moved outside the maintenance window. For event\n`AMS-2023-Q4-NET-17`, support recommends pausing non-urgent management changes\nstarting six hours before the scheduled start. The customer should confirm their\nprimary and backup technical contacts, make sure on-call staff know the event\nID and UTC timing, and save current runbooks where the team can reach them\nquickly.\n\nIf the workload has business-critical transaction periods, the customer should\nidentify the expected impact if management-plane updates are delayed for up to\n10 minutes. A recent read-only export of key configuration records and a\nbaseline capture of application health are useful because they help the team\nrecognize whether observed behavior during the window is new.",
+        "metadata": {
+          "article_id": "KB-AWS-MAINT-002",
+          "title": "Customer Preparation and Contingency Planning for Scheduled AWS Maintenance",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 8,
+        "chunk_id": "KB-CONSULT-003-3",
+        "distance": 0.345100998878479,
+        "content": "## Escalation\n\nThis preparation article is for intermittent latency, not a live outage. If the\ncustomer reports an active service interruption lasting more than 15 minutes, no\ncurrent access to core systems, or repeated crashes, route the case to the\noperations response team before continuing consultation planning.",
+        "metadata": {
+          "article_id": "KB-CONSULT-003",
+          "title": "Preparing Latency Evidence Before a Server Management Consultation",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 9,
+        "chunk_id": "KB-AWS-NEG-002-2",
+        "distance": 0.34610819816589355,
+        "content": "## What support provides\n\nSupport confirms whether alerting is enabled on the managed account, records the\nthreshold values, and states when alerts are evaluated. In this corpus, standard\ncost alerts are checked every six hours against accumulated managed-service\nspend. Support can also explain how alert recipients are updated if team\nownership changes.",
+        "metadata": {
+          "article_id": "KB-AWS-NEG-002",
+          "title": "Setting Cost Alert Thresholds for AWS Management Service Accounts",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 10,
+        "chunk_id": "KB-CONSULT-003-1",
+        "distance": 0.3512325882911682,
+        "content": "## What the customer provides\n\nAsk the customer for the date and approximate time of at least three recent\nlatency events, which applications or services were affected, and whether the\nslowdown was visible to end users or only to administrators. Helpful evidence\nincludes CPU, memory, disk, and network utilization from the same period;\nserver role labels; recent patching or deployment activity; and whether the\nproblem appeared on one system or across a cluster. A brief note about business\nimpact, such as delayed request handling or missed job windows, helps support\nprioritize the consultation.\n\nCustomers should gather evidence only through existing dashboards, operating\nsystem counters, or exported logs. They should not change live performance\nsettings, restart services, or disable protections solely to produce data.",
+        "metadata": {
+          "article_id": "KB-CONSULT-003",
+          "title": "Preparing Latency Evidence Before a Server Management Consultation",
+          "chunk_position": 1
+        },
+        "relevant": false
+      }
+    ]
+  },
+  {
+    "query_id": "Q002",
+    "query": "We are adding a Jira review state and want a specific project role emailed when that transition occurs. Which workflow and mail-routing configurations must be handled separately?",
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "KB-JIRA-NEG-001-2",
+        "distance": 0.2306685447692871,
+        "content": "## What support provides\n\nSupport reviews the notification scheme, watcher settings, and event mapping to\nexplain why a message was or was not sent. Changes are limited to mail-routing\nbehavior and recipient scope.\n\nCustomers often describe this as a workflow problem because the email is sent\nafter an issue changes status. Support should still separate the event that\ntriggered the mail from the workflow step itself before changing any settings.",
+        "metadata": {
+          "article_id": "KB-JIRA-NEG-001",
+          "title": "Notification Schemes and Watchers in Jira Software 8.20",
+          "chunk_position": 2
+        },
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "chunk_id": "KB-JIRA-002-2",
+        "distance": 0.2370508313179016,
+        "content": "## What support provides\n\nSupport reviews the requested workflow map, checks for conflicts with existing\nboards and issue screens, and advises whether the change fits native Jira 8.20\nworkflow capabilities. Standard support can help create new statuses, add or\nrestrict transitions, and apply clear transition conditions when the approval\nrules are already defined. After configuration, support should validate that\nissues can still move through the intended path and that no team loses the\nability to complete required work.\n\nOnce the before-and-after map and transition rules are complete, support\nprovides a change estimate. A single-project workflow with defined conditions\nnormally requires four business days for staging configuration and validation.\nShared workflows or dynamic rules require specialist review before a timeline\nor plugin need can be confirmed. These are support-owned conclusions, not\ndetails the customer is expected to supply.",
+        "metadata": {
+          "article_id": "KB-JIRA-002",
+          "title": "Adding Workflow Statuses and Transition Conditions in Jira Software 8.20",
+          "chunk_position": 2
+        },
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "chunk_id": "KB-JIRA-002-3",
+        "distance": 0.24688464403152466,
+        "content": "## Dynamic behavior and limits\n\nWhen a customer asks for issue handling to shift dynamically as project goals\nchange, support should narrow the request to explicit rules rather than vague\noptimization. Jira can enforce named statuses and documented transition\nconditions, but it cannot infer business priority without a defined policy\nmatrix. This article does not cover notification changes or permission-scheme\ndesign. Escalate when multiple projects share one workflow and the requested\nchange would affect teams outside the customer's approved scope.",
+        "metadata": {
+          "article_id": "KB-JIRA-002",
+          "title": "Adding Workflow Statuses and Transition Conditions in Jira Software 8.20",
+          "chunk_position": 3
+        },
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "chunk_id": "KB-JIRA-002-1",
+        "distance": 0.2558467984199524,
+        "content": "## What the customer provides\n\nSupport should ask for the current workflow name, the issue types affected, and\na simple before-and-after list of statuses and allowed transitions. If the\ncustomer wants transitions to depend on priority, approval, or issue state, the\nexact rule must be supplied in business language so it can be translated into\nworkflow conditions without guessing. A staging project or test window is also\nimportant because workflow changes can affect active teams immediately.\n\nThe customer does not need to predefine every Jira configuration detail, but\nthey do need to state which statuses should be added, removed, or repurposed.",
+        "metadata": {
+          "article_id": "KB-JIRA-002",
+          "title": "Adding Workflow Statuses and Transition Conditions in Jira Software 8.20",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "chunk_id": "KB-JIRA-NEG-001-1",
+        "distance": 0.26217836141586304,
+        "content": "## What the customer provides\n\nSupport should ask which project is affected, which event sends the unwanted or\nmissing email, and which users or roles are expected to receive it. If the\ncustomer references a custom workflow, support still needs the notification\nscheme name separately because the scheme and the workflow are different objects.",
+        "metadata": {
+          "article_id": "KB-JIRA-NEG-001",
+          "title": "Notification Schemes and Watchers in Jira Software 8.20",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 6,
+        "chunk_id": "KB-JIRA-002-0",
+        "distance": 0.2626954913139343,
+        "content": "## Overview\n\nThis article supports Jira 8.20 requests to add statuses, modify transitions,\nor align workflow conditions with a new ticket handling policy. It is commonly\nretrieved alongside the custom priority article because teams often need both\nsets of changes to reflect a revised issue process.",
+        "metadata": {
+          "article_id": "KB-JIRA-002",
+          "title": "Adding Workflow Statuses and Transition Conditions in Jira Software 8.20",
+          "chunk_position": 0
+        },
+        "relevant": true
+      },
+      {
+        "rank": 7,
+        "chunk_id": "KB-JIRA-NEG-002-3",
+        "distance": 0.2631555199623108,
+        "content": "## Limits\n\nThis article does not tell the customer how to redesign statuses, transitions,\nor priority levels. Those changes require separate workflow guidance.",
+        "metadata": {
+          "article_id": "KB-JIRA-NEG-002",
+          "title": "Project Permissions and Role Access in Jira Software 8.20",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 8,
+        "chunk_id": "KB-JIRA-NEG-002-2",
+        "distance": 0.2767917513847351,
+        "content": "## What support provides\n\nSupport checks the permission scheme, associated project roles, and whether the\nproblem is caused by missing membership or by a separate workflow condition.\nSupport may correct role assignments or permission mappings when the change is\napproved.\n\nThe customer does not need to know the exact permission key names in advance.\nThey do need to describe the blocked action clearly so support can tell whether\nthe issue is access-related or part of the workflow design.",
+        "metadata": {
+          "article_id": "KB-JIRA-NEG-002",
+          "title": "Project Permissions and Role Access in Jira Software 8.20",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 9,
+        "chunk_id": "KB-JIRA-NEG-002-0",
+        "distance": 0.2832474708557129,
+        "content": "## Overview\n\nUse this article when a Jira 8.20 customer needs help with who can browse,\ncreate, transition, edit, or administer issues in a project. Permission-scheme\nquestions often sound similar to workflow requests but are controlled\nindependently.",
+        "metadata": {
+          "article_id": "KB-JIRA-NEG-002",
+          "title": "Project Permissions and Role Access in Jira Software 8.20",
+          "chunk_position": 0
+        },
+        "relevant": false
+      },
+      {
+        "rank": 10,
+        "chunk_id": "KB-JIRA-001-2",
+        "distance": 0.28801876306533813,
+        "content": "## What support provides\n\nSupport confirms that Jira 8.20 can host a revised priority scheme without a\nplugin for the core priority field itself. Before implementation, support\nadvises taking a configuration snapshot and testing the new values in staging\nwhen available. The normal sequence is to create or rename priority values,\nconfirm their display order, map any dependent boards or filters that reference\nold names, and then verify that issue creation and search still behave as\nexpected.\n\nIf the customer asks for dynamic reprioritization tied to project state or\nbusiness goals, support should treat that as a second decision point. Basic\npriority changes are straightforward; automatic priority changes require an\napproved ruleset and separate review of whether native automation already in\nplace can support it.",
+        "metadata": {
+          "article_id": "KB-JIRA-001",
+          "title": "Custom Priority Configuration in Jira Software 8.20",
+          "chunk_position": 2
+        },
+        "relevant": false
+      }
+    ]
+  },
+  {
+    "query_id": "Q003",
+    "query": "Our router order is still editable: we need to change its destination and find out whether expedited service remains available after the update.",
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "KB-SHIP-NEG-001-2",
+        "distance": 0.26315099000930786,
+        "content": "## What support provides\n\nSupport can update the address only before carrier handoff. Once the package has\nbeen manifested and transferred to the carrier, the original address must remain\nin place unless the carrier separately approves a reroute request. Support\nshould tell the customer whether the order is still editable and whether the\nchange will delay dispatch.",
+        "metadata": {
+          "article_id": "KB-SHIP-NEG-001",
+          "title": "Shipping Address Change Requests for Hardware Orders",
+          "chunk_position": 2
+        },
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "chunk_id": "KB-SHIP-NEG-001-1",
+        "distance": 0.3062949776649475,
+        "content": "## What the customer provides\n\nSupport needs the order number, the requested new address, and confirmation of\nwhether the order has already shipped. If the destination change affects tax or\nexport screening, the customer may also be asked to reconfirm billing details.",
+        "metadata": {
+          "article_id": "KB-SHIP-NEG-001",
+          "title": "Shipping Address Change Requests for Hardware Orders",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "chunk_id": "KB-SHIP-NEG-001-3",
+        "distance": 0.3189697861671448,
+        "content": "## Limits\n\nThis article does not estimate delivery timelines for a future purchase and does\nnot create tracking numbers before shipment.",
+        "metadata": {
+          "article_id": "KB-SHIP-NEG-001",
+          "title": "Shipping Address Change Requests for Hardware Orders",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "chunk_id": "KB-SHIP-001-4",
+        "distance": 0.3244518041610718,
+        "content": "## Limits\n\nThis article does not authorize shipping-address changes after carrier handoff\nand does not define the return window if the product is unsuitable. Those are\nseparate processes with different requirements.",
+        "metadata": {
+          "article_id": "KB-SHIP-001",
+          "title": "Shipping Methods and Tracking for Networking Equipment Orders",
+          "chunk_position": 4
+        },
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "chunk_id": "KB-SHIP-NEG-001-0",
+        "distance": 0.32997840642929077,
+        "content": "## Overview\n\nUse this article when a customer wants to change the delivery address on an\nexisting hardware order. This process is separate from quoting shipping speed,\ntracking a package, or explaining the return window.",
+        "metadata": {
+          "article_id": "KB-SHIP-NEG-001",
+          "title": "Shipping Address Change Requests for Hardware Orders",
+          "chunk_position": 0
+        },
+        "relevant": true
+      },
+      {
+        "rank": 6,
+        "chunk_id": "KB-SHIP-001-3",
+        "distance": 0.34813427925109863,
+        "content": "## What support provides\n\nSupport checks inventory status, confirms which shipping methods are available\nfor the destination, and explains the quoted transit range. Once the order is\ndispatched, tracking details are normally posted to the order record within 24\nhours and can also be sent by email on request. If multiple packages are used,\nsupport explains which items are in each shipment.\n\nSupport should also explain that quoted delivery windows assume the order clears\nverification before the daily cutoff. If stock must be moved between warehouses,\nthe customer should be told that dispatch timing may shift by one business day\neven when the selected carrier service remains the same. For time-sensitive\nprojects, support can note whether split shipment is available so essential\nhardware can leave first and accessories can follow.",
+        "metadata": {
+          "article_id": "KB-SHIP-001",
+          "title": "Shipping Methods and Tracking for Networking Equipment Orders",
+          "chunk_position": 3
+        },
+        "relevant": true
+      },
+      {
+        "rank": 7,
+        "chunk_id": "KB-SHIP-001-1",
+        "distance": 0.353438138961792,
+        "content": "## Standard timelines\n\nFor in-stock hardware, standard ground delivery is quoted at five to seven\nbusiness days from order release. Expedited delivery is two to three business\ndays, and priority overnight service is available in eligible metro regions for\norders cleared before the daily cutoff. Delivery commitments begin after order\nverification and payment approval, not when the cart is created or the inquiry\nis sent.",
+        "metadata": {
+          "article_id": "KB-SHIP-001",
+          "title": "Shipping Methods and Tracking for Networking Equipment Orders",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 8,
+        "chunk_id": "KB-CISCO-NEG-001-2",
+        "distance": 0.358936071395874,
+        "content": "## What support provides\n\nSupport can confirm whether the requested upgrade path is within the internally\napproved software family, whether an intermediate release is required, and what\npre-change checks are expected. The normal advice is to save the running\nconfiguration, verify console access, and schedule the change during a controlled\nwindow.",
+        "metadata": {
+          "article_id": "KB-CISCO-NEG-001",
+          "title": "Firmware Planning Limits for Cisco ISR4331 Routers",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 9,
+        "chunk_id": "KB-CONSULT-002-1",
+        "distance": 0.36428695917129517,
+        "content": "## What the customer provides\n\nThe customer should provide the channels where requests currently arrive, the\nmain categories of work they want tracked, and how they want urgent versus\nroutine issues distinguished. If they already use approval steps, escalation\npaths, or service targets, those should be shared as part of intake. For teams\nthat mention upgrade handling, support also needs to know whether upgrades are\napproved in one queue, in a separate change flow, or outside the ticketing\nsystem today.\n\nThe customer does not need to propose a final workflow diagram. The point of\ndiscovery is to uncover it.",
+        "metadata": {
+          "article_id": "KB-CONSULT-002",
+          "title": "Discovery Inputs for Ticketing Workflow Recommendations",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 10,
+        "chunk_id": "KB-SHIP-001-2",
+        "distance": 0.36696988344192505,
+        "content": "## What the customer provides\n\nTo quote a realistic delivery window, support needs the destination region,\nwhether the order is shipping to a business or residential address, and whether\nthe customer wants standard, expedited, or priority service. The customer does\nnot need a tracking number before the order has shipped.",
+        "metadata": {
+          "article_id": "KB-SHIP-001",
+          "title": "Shipping Methods and Tracking for Networking Equipment Orders",
+          "chunk_position": 2
+        },
+        "relevant": true
+      }
+    ]
+  },
+  {
+    "query_id": "Q004",
+    "query": "A recently delivered QN90A flickers on internal menus. We need safe diagnostic steps and a comparison of the still-open store-return route with manufacturer technician service.",
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "KB-SAM-TV-001-2",
+        "distance": 0.1796245574951172,
+        "content": "## What support provides\n\nSupport interprets the results. If flicker persists on the built-in menu,\ncontinues after a clean power cycle, and is unaffected by input changes, support\nshould treat the case as a likely hardware-path issue that needs warranty\nrouting or technician assessment. If the flicker happens only with one source,\nsupport can narrow the next step to cabling or source configuration rather than\nthe display assembly.",
+        "metadata": {
+          "article_id": "KB-SAM-TV-001",
+          "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+          "chunk_position": 2
+        },
+        "relevant": true
+      },
+      {
+        "rank": 2,
+        "chunk_id": "KB-SAM-TV-001-3",
+        "distance": 0.1877261996269226,
+        "content": "## Limits and escalation\n\nDo not ask the customer to remove the back cover, press on the panel, reseat\ninternal boards, or repeatedly factory-reset the unit. Escalate to authorized\nservice when the symptom persists after the safe checks above, when the screen\nshows flicker before any external source is selected, or when the problem has\nbecome more frequent over time.",
+        "metadata": {
+          "article_id": "KB-SAM-TV-001",
+          "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+          "chunk_position": 3
+        },
+        "relevant": true
+      },
+      {
+        "rank": 3,
+        "chunk_id": "KB-SAM-TV-001-1",
+        "distance": 0.18912029266357422,
+        "content": "## Safe checks the customer can perform\n\nAsk the customer to note whether the flicker appears on every source or only on\none device. A useful first check is opening the TV home menu or a built-in app;\nif flicker is visible there as well, the problem is less likely to be caused by\nan external cable or player. For external sources, the customer can reseat the\nHDMI cable, try a known-good cable, and temporarily set the source output to a\nstandard refresh rate such as 60 Hz.\n\nThe customer may also power the TV off, unplug it for one minute, and reconnect\nit directly to a wall outlet if it was previously attached to a power strip.\nPicture settings that aggressively alter brightness can be turned off for\ntesting, including contrast enhancer and motion smoothing. These checks are safe\nbecause they are reversible and do not require service access.",
+        "metadata": {
+          "article_id": "KB-SAM-TV-001",
+          "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 4,
+        "chunk_id": "KB-SAM-TV-001-0",
+        "distance": 0.20381420850753784,
+        "content": "## Symptoms\n\nUse this article when a Samsung QN90A owner reports intermittent screen\nflicker, brightness pulsing, or rapid flashing that disrupts viewing. The goal\nis to separate input-related behavior from a likely panel or control-board issue\nwithout asking the customer to open the television or perform unsafe hardware\nwork.",
+        "metadata": {
+          "article_id": "KB-SAM-TV-001",
+          "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+          "chunk_position": 0
+        },
+        "relevant": true
+      },
+      {
+        "rank": 5,
+        "chunk_id": "KB-SAM-NEG-001-2",
+        "distance": 0.22867494821548462,
+        "content": "## What support provides\n\nSupport interprets the results and decides whether the next step is audio\nconfiguration review, accessory isolation, or hardware service for the audio\npath. Picture flicker, backlight pulsing, and display artifacts are outside the\nscope of this article.",
+        "metadata": {
+          "article_id": "KB-SAM-NEG-001",
+          "title": "Troubleshooting Audio Dropouts on Samsung QN90A Televisions",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 6,
+        "chunk_id": "KB-SAM-NEG-001-3",
+        "distance": 0.2507092356681824,
+        "content": "## Limits\n\nDo not use audio troubleshooting as evidence that the panel itself is defective.\nIf the customer reports flashing images, menu flicker, or brightness pulsing,\nmove the case to the display-troubleshooting flow instead of continuing with\nspeaker or eARC checks.",
+        "metadata": {
+          "article_id": "KB-SAM-NEG-001",
+          "title": "Troubleshooting Audio Dropouts on Samsung QN90A Televisions",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 7,
+        "chunk_id": "KB-SAM-TV-002-1",
+        "distance": 0.2982317805290222,
+        "content": "## What the customer provides\n\nThe customer should provide the model, serial number, purchase date, seller\nname, and proof of purchase. For intermittent display problems, a short photo or\nvideo clip is helpful, along with notes about which sources were tested and\nwhether the built-in menu also flickers. The customer may also be asked to\nconfirm that the screen is free of impact cracks, liquid exposure, and\nunauthorized repair attempts.\n\nThe customer is not expected to diagnose the failed part or to decide whether\nthe issue is covered.",
+        "metadata": {
+          "article_id": "KB-SAM-TV-002",
+          "title": "Warranty Routing and Technician Assessment for Samsung Television Display Defects",
+          "chunk_position": 1
+        },
+        "relevant": true
+      },
+      {
+        "rank": 8,
+        "chunk_id": "KB-SAM-NEG-002-3",
+        "distance": 0.29838836193084717,
+        "content": "## Limits\n\nThis article does not determine manufacturer warranty coverage, authorize field\ntechnician visits, or diagnose flicker symptoms. Once the store return window\nhas passed, the request moves to the hardware warranty process.",
+        "metadata": {
+          "article_id": "KB-SAM-NEG-002",
+          "title": "Retail Return Windows for Samsung Televisions Purchased Through the Store",
+          "chunk_position": 3
+        },
+        "relevant": true
+      },
+      {
+        "rank": 9,
+        "chunk_id": "KB-SAM-NEG-001-1",
+        "distance": 0.30485910177230835,
+        "content": "## Safe checks\n\nAsk the customer whether the dropout occurs with internal streaming apps, an\nHDMI source, or only when a soundbar is connected. Safe checks include reseating\nthe HDMI cable, temporarily disabling eARC for testing, switching the digital\naudio output format, and testing the TV speakers directly. If the issue appears\nonly on one external device, support should narrow the investigation to that\nsource path.",
+        "metadata": {
+          "article_id": "KB-SAM-NEG-001",
+          "title": "Troubleshooting Audio Dropouts on Samsung QN90A Televisions",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 10,
+        "chunk_id": "KB-SAM-NEG-001-0",
+        "distance": 0.31695789098739624,
+        "content": "## Symptoms\n\nUse this article when sound cuts out, crackles, or falls out of sync on a\nSamsung QN90A while the picture remains stable. Common retrieval language\nincludes audio interruption, sound dropout, eARC instability, and intermittent\nvolume loss.",
+        "metadata": {
+          "article_id": "KB-SAM-NEG-001",
+          "title": "Troubleshooting Audio Dropouts on Samsung QN90A Televisions",
+          "chunk_position": 0
+        },
+        "relevant": false
+      }
+    ]
+  },
+  {
+    "query_id": "Q005",
+    "query": "Can you enroll a new hardware security key for multifactor authentication and revoke the employee's lost authenticator?",
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "KB-SHIP-002-1",
+        "distance": 0.36223912239074707,
+        "content": "## Eligibility\n\nStandard hardware returns are accepted within 30 calendar days of delivery when\nthe customer requests a return merchandise authorization, or RMA, and the unit\nis returned with its original major components. Open-box returns are allowed,\nbut missing modules, damaged ports, or altered serial labels move the case to\nmanual review. Compatibility disappointment by itself does not guarantee a full\nrefund if the product was sold correctly to the documented specification.",
+        "metadata": {
+          "article_id": "KB-SHIP-002",
+          "title": "Return Eligibility and RMA Process for Networking Hardware",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 2,
+        "chunk_id": "KB-DIST-001-2",
+        "distance": 0.3710252046585083,
+        "content": "## What support provides\n\nSupport validates the identity check, issues the reset, and notes whether the\ncustomer must update multifactor settings at the next sign-in. If the identity\nrecord does not match, support routes the request to account recovery review.",
+        "metadata": {
+          "article_id": "KB-DIST-001",
+          "title": "Identity Checks for Account Password Reset Requests",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 3,
+        "chunk_id": "KB-SHIP-002-3",
+        "distance": 0.3775695562362671,
+        "content": "## What support provides\n\nSupport confirms whether the request is inside the return window, issues the RMA\nidentifier, and explains where the item must be shipped. If restocking applies,\nsupport states it before the return is finalized. Once the returned hardware is\nreceived and passes inspection, support closes the RMA and releases the refund\nor replacement outcome tied to the order type.\n\nWhen the customer is asking before purchase, support can explain that the RMA\nprocess exists without predicting the final inspection outcome in advance.\nReturned hardware is checked for missing accessories, altered serial labels, and\nobvious port damage before the case is completed. If inspection finds a mismatch\nwith the submitted return reason, support documents that difference for the\ncustomer rather than silently reducing the outcome.",
+        "metadata": {
+          "article_id": "KB-SHIP-002",
+          "title": "Return Eligibility and RMA Process for Networking Hardware",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 4,
+        "chunk_id": "KB-DIST-001-0",
+        "distance": 0.38260936737060547,
+        "content": "## Overview\n\nUse this article when a customer cannot access an account and needs a password\nreset. The focus is verifying identity safely before support changes login\ncredentials.",
+        "metadata": {
+          "article_id": "KB-DIST-001",
+          "title": "Identity Checks for Account Password Reset Requests",
+          "chunk_position": 0
+        },
+        "relevant": false
+      },
+      {
+        "rank": 5,
+        "chunk_id": "KB-DIST-001-1",
+        "distance": 0.39206647872924805,
+        "content": "## What the customer provides\n\nThe customer should provide the account identifier, current contact email, and\none approved identity-check detail such as the last successful billing postcode\nor the name of the authorized signer on file. Support should not ask for full\npayment card numbers or plaintext passwords.",
+        "metadata": {
+          "article_id": "KB-DIST-001",
+          "title": "Identity Checks for Account Password Reset Requests",
+          "chunk_position": 1
+        },
+        "relevant": false
+      },
+      {
+        "rank": 6,
+        "chunk_id": "KB-SHIP-002-0",
+        "distance": 0.3953310251235962,
+        "content": "## Overview\n\nThis article covers return requests for networking hardware after delivery. It\nis appropriate when a customer asks what happens if a router or similar product\ndoes not meet expectations and wants to understand the support process before\nordering.",
+        "metadata": {
+          "article_id": "KB-SHIP-002",
+          "title": "Return Eligibility and RMA Process for Networking Hardware",
+          "chunk_position": 0
+        },
+        "relevant": false
+      },
+      {
+        "rank": 7,
+        "chunk_id": "KB-SHIP-002-2",
+        "distance": 0.4032530188560486,
+        "content": "## What the customer provides\n\nThe customer should provide the order number, delivery date, model, serial\nnumber if available, and the reason for return. If the package arrived damaged,\nphotos of the carton and contents are helpful. The customer is not expected to\ncreate the RMA code on their own.",
+        "metadata": {
+          "article_id": "KB-SHIP-002",
+          "title": "Return Eligibility and RMA Process for Networking Hardware",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 8,
+        "chunk_id": "KB-DIST-002-3",
+        "distance": 0.4037702679634094,
+        "content": "## Limits\n\nThis article does not approve billing adjustments, cancel hardware orders in\ntransit, or act as a return authorization. If the customer is actually disputing\na charge or returning equipment, support should move to the correct policy\nprocess.",
+        "metadata": {
+          "article_id": "KB-DIST-002",
+          "title": "Intake for Subscription Cancellation Requests",
+          "chunk_position": 3
+        },
+        "relevant": false
+      },
+      {
+        "rank": 9,
+        "chunk_id": "KB-CISCO-001-2",
+        "distance": 0.4040459990501404,
+        "content": "## Compatibility notes\n\nThe ISR4331 is most often recommended for branch aggregation, managed VPN edge,\nand mixed voice-data office routing. Customers should confirm whether they need\nadditional modules for serial handoff, LTE backup, or dense switch-port\nexpansion, because those capabilities are not included in the base chassis.\nSupport can clarify catalog compatibility and licensed feature families, but it\ndoes not design the customer's full network from this reference article alone.\n\nWhen a customer asks about unique features, support can describe the modular\nexpansion bays, encrypted branch connectivity profile, and central policy use\ncase in plain language. If the customer already knows the WAN handoff type and\nuplink redundancy requirement, support can also tell them whether the base\nchassis is sufficient or whether an approved module must be added to the quote.",
+        "metadata": {
+          "article_id": "KB-CISCO-001",
+          "title": "Cisco ISR4331 Specification and Compatibility Reference",
+          "chunk_position": 2
+        },
+        "relevant": false
+      },
+      {
+        "rank": 10,
+        "chunk_id": "KB-DIST-001-3",
+        "distance": 0.4078553318977356,
+        "content": "## Limits\n\nThis article does not unlock suspended contracts, change billing contacts, or\noverride identity controls because the caller says access is urgent. Escalate\nonly when the customer no longer controls the registered email and standard\nidentity verification cannot be completed safely.",
+        "metadata": {
+          "article_id": "KB-DIST-001",
+          "title": "Identity Checks for Account Password Reset Requests",
+          "chunk_position": 3
+        },
+        "relevant": false
+      }
+    ]
+  }
+]
