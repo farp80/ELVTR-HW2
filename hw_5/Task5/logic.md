@@ -18,7 +18,7 @@ Group the misses in the report.
 
 - Q005 asks for a hardware security key and a lost authenticator. No article covers that, so those misses are missing documents.
 - Q002 needs a workflow article and a mail article. Q004 needs flicker checks, the store-return window, and technician routing. Those misses are split answers.
-- A neighbor article that ranks above the article that answers the question is the third group. General health can outrank a named maintenance event. Audio can outrank flicker. Firmware can outrank shipping.
+- A neighbor article that ranks above the article that answers the question is the third group. On Q001 the named maintenance notice ranks above the general health article. On Q004 an audio chunk ranks above the return and technician chunks.
 
 ## Reasoning
 
