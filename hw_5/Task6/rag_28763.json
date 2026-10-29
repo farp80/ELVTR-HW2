@@ -1,0 +1,79 @@
+{
+  "k": 5,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "KB-SAM-TV-001-0",
+      "distance": 0.12108337879180908,
+      "content": "## Symptoms\n\nUse this article when a Samsung QN90A owner reports intermittent screen\nflicker, brightness pulsing, or rapid flashing that disrupts viewing. The goal\nis to separate input-related behavior from a likely panel or control-board issue\nwithout asking the customer to open the television or perform unsafe hardware\nwork.",
+      "metadata": {
+        "article_id": "KB-SAM-TV-001",
+        "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+        "chunk_position": 0
+      }
+    },
+    {
+      "rank": 2,
+      "chunk_id": "KB-SAM-TV-001-1",
+      "distance": 0.1263030767440796,
+      "content": "## Safe checks the customer can perform\n\nAsk the customer to note whether the flicker appears on every source or only on\none device. A useful first check is opening the TV home menu or a built-in app;\nif flicker is visible there as well, the problem is less likely to be caused by\nan external cable or player. For external sources, the customer can reseat the\nHDMI cable, try a known-good cable, and temporarily set the source output to a\nstandard refresh rate such as 60 Hz.\n\nThe customer may also power the TV off, unplug it for one minute, and reconnect\nit directly to a wall outlet if it was previously attached to a power strip.\nPicture settings that aggressively alter brightness can be turned off for\ntesting, including contrast enhancer and motion smoothing. These checks are safe\nbecause they are reversible and do not require service access.",
+      "metadata": {
+        "article_id": "KB-SAM-TV-001",
+        "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+        "chunk_position": 1
+      }
+    },
+    {
+      "rank": 3,
+      "chunk_id": "KB-SAM-TV-001-2",
+      "distance": 0.13003724813461304,
+      "content": "## What support provides\n\nSupport interprets the results. If flicker persists on the built-in menu,\ncontinues after a clean power cycle, and is unaffected by input changes, support\nshould treat the case as a likely hardware-path issue that needs warranty\nrouting or technician assessment. If the flicker happens only with one source,\nsupport can narrow the next step to cabling or source configuration rather than\nthe display assembly.",
+      "metadata": {
+        "article_id": "KB-SAM-TV-001",
+        "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+        "chunk_position": 2
+      }
+    },
+    {
+      "rank": 4,
+      "chunk_id": "KB-SAM-TV-001-3",
+      "distance": 0.1627042293548584,
+      "content": "## Limits and escalation\n\nDo not ask the customer to remove the back cover, press on the panel, reseat\ninternal boards, or repeatedly factory-reset the unit. Escalate to authorized\nservice when the symptom persists after the safe checks above, when the screen\nshows flicker before any external source is selected, or when the problem has\nbecome more frequent over time.",
+      "metadata": {
+        "article_id": "KB-SAM-TV-001",
+        "title": "Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs",
+        "chunk_position": 3
+      }
+    },
+    {
+      "rank": 5,
+      "chunk_id": "KB-SAM-NEG-001-2",
+      "distance": 0.19290363788604736,
+      "content": "## What support provides\n\nSupport interprets the results and decides whether the next step is audio\nconfiguration review, accessory isolation, or hardware service for the audio\npath. Picture flicker, backlight pulsing, and display artifacts are outside the\nscope of this article.",
+      "metadata": {
+        "article_id": "KB-SAM-NEG-001",
+        "title": "Troubleshooting Audio Dropouts on Samsung QN90A Televisions",
+        "chunk_position": 2
+      }
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You write an internal summary of a customer support ticket for a human support agent.\n\nThe ticket body is what the customer wrote. Support articles are outside context. Use an article only when it applies. Use article context only to identify information missing from the ticket; never present article facts as customer statements. Do not add unsupported facts, guess, suggest a solution, or assign a department.\n\nReturn a JSON object with exactly these fields:\n- summary: one or two short sentences describing the reported issue.\n- customer_request: everything the customer asks for, in one or two sentences. Include every request and every question.\n- missing_information: a list of details needed to understand or act on the request. Use an empty list if nothing is clearly missing."
+    },
+    {
+      "role": "user",
+      "content": "TICKET BODY (customer-provided text):\nDear Customer Support Team,I hope this message finds you well. I am writing to report a concerning issue I am experiencing with my recently purchased Samsung QLED QN90A TV, which I bought from your 'Tech Online Store'. Having been a loyal customer, I expected nothing short of superior performance and reliability that Samsung products are renowned for. However, this particular unit seems to be presenting a rather persistent and distracting problem.The television has developed a flickering issue while in use, which occurs intermittently but frequently enough to hinder the viewing experience significantly. It started subtly but has become more pronounced over time, leading me to believe that it might be a hardware-related issue rather than something that could be adjusted with simple settings modifications. I understand these models are generally known for their impressive picture quality and advanced technology, so this flickering is both unexpected and disappointing.Given the nature of the problem, I suspect it might involve components relating to the display hardware, as no changes in external settings such as cables or power sources appear to affect or resolve the issue. Unfortunately, adjusting brightness levels or refreshing the support software has shown no improvement. Considering these attempts to troubleshoot the problem have been unsuccessful, I am compelled to seek your professional assistance to resolve this matter promptly.I would appreciate it if you could provide guidance on the next steps to take, possibly including instructions for an at-home diagnosis or arranging a qualified technician's assessment. Additionally, information about your repair policies and warranty coverage for such issues would be greatly appreciated. My hope is to have this resolved quickly to return to enjoying the high-quality viewing experience I anticipated upon purchase.Thank you for your attention to this matter. I look forward to your prompt response with advice on how we can proceed to rectify this issue with my Samsung QLED QN90A.Best regards,nameacc_num\n\nSUPPORT ARTICLES (external context, not customer statements):\n[KB-SAM-TV-001-0] Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs\n## Symptoms\n\nUse this article when a Samsung QN90A owner reports intermittent screen\nflicker, brightness pulsing, or rapid flashing that disrupts viewing. The goal\nis to separate input-related behavior from a likely panel or control-board issue\nwithout asking the customer to open the television or perform unsafe hardware\nwork.\n\n[KB-SAM-TV-001-1] Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs\n## Safe checks the customer can perform\n\nAsk the customer to note whether the flicker appears on every source or only on\none device. A useful first check is opening the TV home menu or a built-in app;\nif flicker is visible there as well, the problem is less likely to be caused by\nan external cable or player. For external sources, the customer can reseat the\nHDMI cable, try a known-good cable, and temporarily set the source output to a\nstandard refresh rate such as 60 Hz.\n\nThe customer may also power the TV off, unplug it for one minute, and reconnect\nit directly to a wall outlet if it was previously attached to a power strip.\nPicture settings that aggressively alter brightness can be turned off for\ntesting, including contrast enhancer and motion smoothing. These checks are safe\nbecause they are reversible and do not require service access.\n\n[KB-SAM-TV-001-2] Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs\n## What support provides\n\nSupport interprets the results. If flicker persists on the built-in menu,\ncontinues after a clean power cycle, and is unaffected by input changes, support\nshould treat the case as a likely hardware-path issue that needs warranty\nrouting or technician assessment. If the flicker happens only with one source,\nsupport can narrow the next step to cabling or source configuration rather than\nthe display assembly.\n\n[KB-SAM-TV-001-3] Safe Troubleshooting for Intermittent Flicker on Samsung QN90A TVs\n## Limits and escalation\n\nDo not ask the customer to remove the back cover, press on the panel, reseat\ninternal boards, or repeatedly factory-reset the unit. Escalate to authorized\nservice when the symptom persists after the safe checks above, when the screen\nshows flicker before any external source is selected, or when the problem has\nbecome more frequent over time.\n\n[KB-SAM-NEG-001-2] Troubleshooting Audio Dropouts on Samsung QN90A Televisions\n## What support provides\n\nSupport interprets the results and decides whether the next step is audio\nconfiguration review, accessory isolation, or hardware service for the audio\npath. Picture flicker, backlight pulsing, and display artifacts are outside the\nscope of this article."
+    }
+  ],
+  "raw": "{\n  \"summary\": \"The customer's Samsung QLED QN90A TV is experiencing persistent flickering issues, which they believe is a hardware-related problem.\",\n  \"customer_request\": \"I need help resolving the flickering issue on my Samsung QLED QN90A TV. I've tried adjusting brightness and refreshing the support software, but it hasn't resolved the problem. I'm looking for guidance on how to diagnose and fix this issue, and I'd appreciate information about your repair policies and warranty coverage.\",\n  \"missing_information\": [\"The specific source of the flickering issue, whether it's intermittent or persistent, and whether it occurs on every source or only on one device.\"]\n}",
+  "output": {
+    "summary": "The customer's Samsung QLED QN90A TV is experiencing persistent flickering issues, which they believe is a hardware-related problem.",
+    "customer_request": "I need help resolving the flickering issue on my Samsung QLED QN90A TV. I've tried adjusting brightness and refreshing the support software, but it hasn't resolved the problem. I'm looking for guidance on how to diagnose and fix this issue, and I'd appreciate information about your repair policies and warranty coverage.",
+    "missing_information": [
+      "The specific source of the flickering issue, whether it's intermittent or persistent, and whether it occurs on every source or only on one device."
+    ]
+  },
+  "error": null
+}
