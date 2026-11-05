@@ -14,4 +14,6 @@ __pycache__/
 *.pdf
 *.png
 *.txt
-lancedb/*.jsonl
+lancedb/
+*.jsonl
+
