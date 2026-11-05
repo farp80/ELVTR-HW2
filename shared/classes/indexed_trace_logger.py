@@ -1,8 +1,8 @@
 import json
 import threading
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from trace_logger import TraceLogger
+from shared.utils.trace_logger import TraceLogger
 
 BLOCKED_FIELDS = frozenset({
     "api_key",
@@ -38,7 +38,7 @@ class IndexedTraceLogger(TraceLogger):
             raise ValueError("trace_id must be a non-empty string")
         if timestamp is None:
             timestamp = (
-                datetime.now(timezone.utc)
+                datetime.now(UTC)
                 .isoformat(timespec="milliseconds")
                 .replace("+00:00", "Z")
             )
@@ -73,7 +73,7 @@ class IndexedTraceLogger(TraceLogger):
                         f"Invalid JSON in trace log at line {line_number}."
                     ) from error
                 if not isinstance(record, dict):
-                    raise ValueError(
+                    raise ValueError(  # noqa: TRY004
                         f"Trace log line {line_number} must contain a JSON object."
                     )
                 grouped.setdefault(record.get("trace_id"), []).append(record)

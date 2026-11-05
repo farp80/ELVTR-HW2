@@ -15,6 +15,8 @@ class RetrievalService:
         root = Path(__file__).resolve().parents[2]
         path = root / "hw_5" / "Fidel Alejandro Rosell Perez - VectorStore.py"
         spec = importlib.util.spec_from_file_location("vector_store", path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError("vector store could not be loaded")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         return module.VectorStore
@@ -29,12 +31,12 @@ class RetrievalService:
 
     def __check(self,hits):
         if not isinstance(hits, list):
-            raise RuntimeError("retrieval did not return a list")
+            raise RuntimeError("retrieval did not return a list")  # noqa: TRY004
         for hit in hits:
             if not isinstance(hit, dict) or any(field not in hit for field in FIELDS):
                 raise RuntimeError("retrieval row is missing a required field")
             if not isinstance(hit["distance"], (int, float)) or isinstance(hit["distance"], bool):
-                raise RuntimeError("retrieval distance must be a number")
+                raise RuntimeError("retrieval distance must be a number")  # noqa: TRY004
             if not math.isfinite(hit["distance"]):
                 raise RuntimeError("retrieval distance must be finite")
         return hits

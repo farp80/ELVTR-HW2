@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from types import TracebackType
-from typing import Any
+from typing import Any, Self
 from uuid import uuid4
 
 
@@ -49,7 +49,7 @@ class TraceLogger:
 
         trace_record = dict(fields)
         trace_record["timestamp"] = timestamp if timestamp is not None else (
-            datetime.now(timezone.utc)
+            datetime.now(UTC)
             .isoformat(timespec="milliseconds")
             .replace("+00:00", "Z")
         )
@@ -83,7 +83,7 @@ class TraceLogger:
                         f"Invalid JSON in trace log at line {line_number}."
                     ) from error
                 if not isinstance(record, dict):
-                    raise ValueError(
+                    raise ValueError(  # noqa: TRY004
                         f"Trace log line {line_number} must contain a JSON object."
                     )
                 if record.get("trace_id") == trace_id:
@@ -99,7 +99,7 @@ class TraceLogger:
         self._logger.removeHandler(self._handler)
         self._closed = True
 
-    def __enter__(self) -> TraceLogger:
+    def __enter__(self) -> Self:
         self._ensure_open()
         return self
 

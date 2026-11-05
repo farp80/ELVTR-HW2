@@ -1,0 +1,8 @@
+﻿{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}",
+        "${workspaceFolder}/hw_6/Task2",
+        "${workspaceFolder}/hw_6/Task3",
+        "${workspaceFolder}/hw_6/Task4"
+    ]
+}

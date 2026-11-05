@@ -4,11 +4,11 @@
 
 `IndexedTraceLogger` subclasses the supplied `TraceLogger`. `record` still writes one JSON object per line, with the same timestamp and the same caller fields. `read_trace` still returns those rows in file order. The supplied `test_trace_logger.py` passes when its `logger_type` is this subclass.
 
-Save the program below as `indexed_trace_logger.py` beside `trace_logger.py`.
+Save the program below as `shared/classes/indexed_trace_logger.py`. The supplied `trace_logger.py` lives in `shared/utils/`.
 
 ## Where the workflow constructs it
 
-`TicketWorkflow.__init__` is the only line that creates a logger. In `hw_6/Task6/logic.md` that line is `self._logger = IndexedTraceLogger(log_path)`, and the import is `from indexed_trace_logger import IndexedTraceLogger`.
+`TicketWorkflow.__init__` is the only line that creates a logger. In `hw_6/Task6/logic.md` that line is `self._logger = IndexedTraceLogger(log_path)`, and the import is `from shared.classes.indexed_trace_logger import IndexedTraceLogger`.
 
 `process_ticket` then calls `self._logger.generate_trace_id()`. `_record` calls `self._logger.record(trace_id, **fields)`. Both methods are the supplied methods. The subclass adds the index, the lock, and the private-field check inside `record` and `read_trace`. No other line in `workflow.py` names a logger class.
 
@@ -45,7 +45,7 @@ import json
 import threading
 from datetime import datetime, timezone
 
-from trace_logger import TraceLogger
+from shared.utils.trace_logger import TraceLogger
 
 BLOCKED_FIELDS = frozenset({
     "api_key",

@@ -1,12 +1,17 @@
-import asyncio
 import json
+import sys
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 from time import perf_counter
 from uuid import uuid4
 
-from llm_service import LLMClient
-from retrieval_service import RetrievalService
-from routing_service import DEPARTMENTS, RoutingService
-from indexed_trace_logger import IndexedTraceLogger
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
+from hw_6.Task2.routing_service import DEPARTMENTS, RoutingService
+from hw_6.Task3.retrieval_service import RetrievalService
+from hw_6.Task4.llm_service import LLMClient
+from shared.classes.indexed_trace_logger import IndexedTraceLogger
 
 MODEL = "qwen2.5:1.5b-instruct-q4_K_M"
 OPTIONS = {"temperature": 0, "seed": 42, "num_predict": 512}
@@ -57,10 +62,15 @@ def _summary(raw):
     fields = {"summary", "customer_request", "missing_information"}
     if not isinstance(data, dict) or set(data) != fields:
         raise RuntimeError("summary fields are wrong")
-    if any(not isinstance(data[key], str) or not data[key].strip() for key in ("summary", "customer_request")):
+    if any(
+        not isinstance(data[key], str) or not data[key].strip()
+        for key in ("summary", "customer_request")
+    ):
         raise RuntimeError("summary text is empty")
     missing = data["missing_information"]
-    if not isinstance(missing, list) or any(not isinstance(item, str) or not item.strip() for item in missing):
+    if not isinstance(missing, list) or any(
+        not isinstance(item, str) or not item.strip() for item in missing
+    ):
         raise RuntimeError("missing_information must be a list of strings")
     return data
 
@@ -80,14 +90,25 @@ def _messages(body, evidence):
     return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}]
 
 
-def _package(ticket_id, record_id, trace_id, status, error, route=None, body=None, summary=None, evidence=None):
+def _package(
+    ticket_id,
+    record_id,
+    trace_id,
+    status,
+    error,
+    route=None,
+    body=None,
+    summary=None,
+    evidence=None,
+):
     ready = status == "summary_ready_for_review"
+    route = route or {}
     return {
         "ticket_id": ticket_id,
         "workflow_record_id": record_id,
         "terminal_status": status,
-        "recommended_department": route["recommended_department"] if ready else None,
-        "class_scores": route["class_scores"] if ready else None,
+        "recommended_department": route.get("recommended_department") if ready else None,
+        "class_scores": route.get("class_scores") if ready else None,
         "ticket_body": body if ready else None,
         "ticket_summary": summary if ready else None,
         "retrieved_evidence": evidence if ready else [],
@@ -106,14 +127,16 @@ class TicketWorkflow:
     def _record(self, trace_id, **fields):
         self._logger.record(trace_id, **fields)
 
-    async def _route_path(self, body, trace_id):
+    def _route_path(self, body, trace_id):
         started = perf_counter()
         self._record(trace_id, service="routing", event="started")
         try:
-            result = await asyncio.to_thread(self._routing.route_ticket, {"body": body})
+            result = self._routing.route_ticket({"body": body})
         except Exception:
             elapsed_ms = int((perf_counter() - started) * 1000)
-            self._record(trace_id, service="routing", event="failed", elapsed_ms=elapsed_ms)
+            self._record(
+                trace_id, service="routing", event="failed", elapsed_ms=elapsed_ms
+            )
             raise
         elapsed_ms = int((perf_counter() - started) * 1000)
         self._record(
@@ -125,14 +148,16 @@ class TicketWorkflow:
         )
         return result
 
-    async def _retrieve_path(self, body, trace_id):
+    def _retrieve_path(self, body, trace_id):
         started = perf_counter()
         self._record(trace_id, service="retrieval", event="started")
         try:
-            found = await asyncio.to_thread(self._retrieval.retrieve_evidence, {"body": body})
+            found = self._retrieval.retrieve_evidence({"body": body})
         except Exception:
             elapsed_ms = int((perf_counter() - started) * 1000)
-            self._record(trace_id, service="retrieval", event="failed", elapsed_ms=elapsed_ms)
+            self._record(
+                trace_id, service="retrieval", event="failed", elapsed_ms=elapsed_ms
+            )
             raise
         evidence = found["evidence"]
         elapsed_ms = int((perf_counter() - started) * 1000)
@@ -146,18 +171,19 @@ class TicketWorkflow:
         )
         return evidence
 
-    async def _llm_path(self, body, evidence, trace_id):
+    def _llm_path(self, body, evidence, trace_id):
         started = perf_counter()
-        self._record(trace_id, service="llm", event="started", chunk_count=len(evidence))
+        self._record(
+            trace_id, service="llm", event="started", chunk_count=len(evidence)
+        )
         try:
-            reply = await asyncio.to_thread(
-                self._llm.call_llm,
+            reply = self._llm.call_llm(
                 {
                     "messages": _messages(body, evidence),
                     "model": MODEL,
                     "options": OPTIONS,
                     "schema": SCHEMA,
-                },
+                }
             )
             summary = _summary(reply["content"])
         except Exception:
@@ -174,25 +200,25 @@ class TicketWorkflow:
         )
         return summary
 
-    async def _summarize_path(self, body, trace_id):
-        evidence = await self._retrieve_path(body, trace_id)
-        summary = await self._llm_path(body, evidence, trace_id)
+    def _summarize_path(self, body, trace_id):
+        evidence = self._retrieve_path(body, trace_id)
+        summary = self._llm_path(body, evidence, trace_id)
         return summary, evidence
 
-    async def _run(self, body, trace_id):
-        route_task = asyncio.create_task(self._route_path(body, trace_id))
-        summary_task = asyncio.create_task(self._summarize_path(body, trace_id))
-        route_error = summary_error = None
-        try:
-            route = await route_task
-        except Exception as exc:
-            route, route_error = None, exc
-        try:
-            summary, evidence = await summary_task
-        except Exception as exc:
-            summary, evidence, summary_error = None, None, exc
+    def _run(self, body, trace_id):
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            # Submit both paths before waiting, so they run at the same time.
+            route_future = pool.submit(self._route_path, body, trace_id)
+            summary_future = pool.submit(self._summarize_path, body, trace_id)
+            # exception() waits for the path and returns its error, if any.
+            route_error = route_future.exception()
+            summary_error = summary_future.exception()
         if route_error or summary_error:
-            raise RuntimeError("a workflow service failed")
+            raise RuntimeError("a workflow service failed") from (
+                route_error or summary_error
+            )
+        route = route_future.result()
+        summary, evidence = summary_future.result()
         if route["recommended_department"] not in DEPARTMENTS:
             raise RuntimeError("routing department is not allowed")
         return route, summary, evidence
@@ -205,16 +231,42 @@ class TicketWorkflow:
         ticket_id, body, reject = _accept(request)
         if reject:
             elapsed_ms = int((perf_counter() - started) * 1000)
-            self._record(trace_id, service="workflow", event="completed", terminal_status="input_rejected", elapsed_ms=elapsed_ms)
+            self._record(
+                trace_id,
+                service="workflow",
+                event="completed",
+                terminal_status="input_rejected",
+                elapsed_ms=elapsed_ms,
+            )
             return _package(ticket_id, record_id, trace_id, "input_rejected", reject)
         try:
-            route, summary, evidence = asyncio.run(self._run(body, trace_id))
-        except Exception:
+            route, summary, evidence = self._run(body, trace_id)
+        except RuntimeError as exc:
             elapsed_ms = int((perf_counter() - started) * 1000)
-            self._record(trace_id, service="workflow", event="failed", terminal_status="workflow_failed", elapsed_ms=elapsed_ms)
-            return _package(ticket_id, record_id, trace_id, "workflow_failed", "a workflow service failed")
+            cause = exc.__cause__ or exc
+            self._record(
+                trace_id,
+                service="workflow",
+                event="failed",
+                terminal_status="workflow_failed",
+                elapsed_ms=elapsed_ms,
+                error_type=type(cause).__name__,
+            )
+            return _package(
+                ticket_id,
+                record_id,
+                trace_id,
+                "workflow_failed",
+                "a workflow service failed",
+            )
         elapsed_ms = int((perf_counter() - started) * 1000)
-        self._record(trace_id, service="workflow", event="completed", terminal_status="summary_ready_for_review", elapsed_ms=elapsed_ms)
+        self._record(
+            trace_id,
+            service="workflow",
+            event="completed",
+            terminal_status="summary_ready_for_review",
+            elapsed_ms=elapsed_ms,
+        )
         return _package(
             ticket_id,
             record_id,
@@ -226,3 +278,19 @@ class TicketWorkflow:
             summary=summary,
             evidence=evidence,
         )
+
+
+if __name__ == "__main__":
+    workflow = TicketWorkflow(
+        model_path=ROOT / "hw_4" / "Task2" / "Fidel Alejandro Rosell Perez - hw4_candidate.pkl",
+        database_path=ROOT / "hw_5" / "Task4" / "lancedb",
+        log_path=Path(__file__).resolve().parent / "workflow_trace.jsonl",
+    )
+    result = workflow.process_ticket(
+        {
+            "ticket_id": 1,
+            "Body": "I was charged twice for my subscription this month. "
+            "Please refund the duplicate charge.",
+        }
+    )
+    print(json.dumps(result, indent=2))

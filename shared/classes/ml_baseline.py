@@ -2,6 +2,7 @@ import joblib
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
+
 class MLBaseline:
     def __init__(self, vectorizer_path, model=None):
         self.vectorizer_path = vectorizer_path

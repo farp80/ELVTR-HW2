@@ -23,6 +23,8 @@ class RoutingService:
         root = Path(__file__).resolve().parents[2]
         path = root / "shared" / "classes" / "ticket_routing_classifier.py"
         spec = importlib.util.spec_from_file_location("ticket_routing_classifier", path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError("routing classifier could not be loaded")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         return module.TicketRoutingClassifier
@@ -44,7 +46,7 @@ class RoutingService:
             raise RuntimeError("routing scores must cover every department")
         if any(isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score) for score in scores.values()):
             raise RuntimeError("routing scores must be finite numbers")
-        if max(scores, key=scores.get) != department:
+        if max(scores, key=lambda name: scores[name]) != department:
             raise RuntimeError("recommended department is not the top score")
         return {"recommended_department": department, "class_scores": scores}
 

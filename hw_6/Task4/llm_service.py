@@ -10,7 +10,7 @@ class LLMClient:
 
     def __request(self, request):
         if not isinstance(request, dict):
-            raise ValueError("LLM request must be a dictionary")
+            raise ValueError("LLM request must be a dictionary")  # noqa: TRY004
 
         messages = request.get("messages")
         model = request.get("model")
@@ -21,17 +21,14 @@ class LLMClient:
 
         for message in messages:
             if not isinstance(message, dict):
-                raise ValueError("each LLM message must be an object")
+                raise ValueError("each LLM message must be an object")  # noqa: TRY004
             if not isinstance(message.get("role"), str) or not isinstance(message.get("content"), str):
-                raise ValueError("each LLM message needs a role and content")
+                raise ValueError("each LLM message needs a role and content")  # noqa: TRY004
 
         if not isinstance(model, str) or not model.strip():
             raise ValueError("LLM model must be a non-empty string")
         if not isinstance(options, dict):
-            raise ValueError("LLM options must be an object")
-
-        if not isinstance(schema, dict):
-            raise ValueError("LLM schema must be an object or omitted")
+            raise ValueError("LLM options must be an object")  # noqa: TRY004
 
         schema = request.get("schema")
         if schema is not None and not isinstance(schema, dict):
@@ -40,16 +37,16 @@ class LLMClient:
         return {"messages": messages, "model": model, "options": options, "schema": schema}
 
     def call_llm(self, request):
-        payload = self.__request(request)
+        checked = self.__request(request)
         payload = {
-            "model": payload["model"],
-            "messages": payload["messages"],
+            "model": checked["model"],
+            "messages": checked["messages"],
             "stream": False,
-            "options": payload["options"],
+            "options": checked["options"],
         }
 
-        if payload["schema"] is not None:
-            payload["format"] = payload["schema"]
+        if checked["schema"] is not None:
+            payload["format"] = checked["schema"]
         try:
             response = requests.post(self._url, json=payload, timeout=600)
             response.raise_for_status()

@@ -2,10 +2,9 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
-from hw_6.Task4.llm_service import LLMClient
-from hw_6.Task3.retrieval_service import RetrievalService
 from hw_6.Task2.routing_service import DEPARTMENTS, RoutingService
-
+from hw_6.Task3.retrieval_service import RetrievalService
+from hw_6.Task4.llm_service import LLMClient
 
 MODEL = "qwen2.5:1.5b-instruct-q4_K_M"
 OPTIONS = {"temperature": 0, "seed": 42, "num_predict": 512}
@@ -81,12 +80,13 @@ def _messages(body, evidence):
 
 def _package(ticket_id, record_id, status, error, route=None, body=None, summary=None, evidence=None):
     ready = status == "summary_ready_for_review"
+    route = route or {}
     return {
         "ticket_id": ticket_id,
         "workflow_record_id": record_id,
         "terminal_status": status,
-        "recommended_department": route["recommended_department"] if ready else None,
-        "class_scores": route["class_scores"] if ready else None,
+        "recommended_department": route.get("recommended_department") if ready else None,
+        "class_scores": route.get("class_scores") if ready else None,
         "ticket_body": body if ready else None,
         "ticket_summary": summary if ready else None,
         "retrieved_evidence": evidence if ready else [],
@@ -118,17 +118,15 @@ class TicketWorkflow:
         with ThreadPoolExecutor(max_workers=2) as pool:
             route_future = pool.submit(self._routing.route_ticket, {"body": body})
             summary_future = pool.submit(self._summarize, body)
-            route_error = summary_error = None
-            try:
-                route = route_future.result()
-            except Exception as exc:
-                route, route_error = None, exc
-            try:
-                summary, evidence = summary_future.result()
-            except Exception as exc:
-                summary, evidence, summary_error = None, None, exc
+            # exception() waits for the path and returns its error, if any.
+            route_error = route_future.exception()
+            summary_error = summary_future.exception()
         if route_error or summary_error:
-            raise RuntimeError("a workflow service failed")
+            raise RuntimeError("a workflow service failed") from (
+                route_error or summary_error
+            )
+        route = route_future.result()
+        summary, evidence = summary_future.result()
         if route["recommended_department"] not in DEPARTMENTS:
             raise RuntimeError("routing department is not allowed")
         return route, summary, evidence
@@ -140,7 +138,7 @@ class TicketWorkflow:
             return _package(ticket_id, record_id, "input_rejected", reject)
         try:
             route, summary, evidence = self._run(body)
-        except Exception:
+        except RuntimeError:
             return _package(ticket_id, record_id, "workflow_failed", "a workflow service failed")
         return _package(
             ticket_id,
