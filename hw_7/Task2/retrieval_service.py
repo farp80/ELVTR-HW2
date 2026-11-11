@@ -16,13 +16,13 @@ def _body(request):
 
 def _check(hits):
     if not isinstance(hits, list):
-        raise RuntimeError("retrieval did not return a list")
+        raise RuntimeError("retrieval did not return a list")  # noqa: TRY004
     for hit in hits:
         if not isinstance(hit, dict) or any(field not in hit for field in FIELDS):
             raise RuntimeError("retrieval row is missing a required field")
         distance = hit["distance"]
         if isinstance(distance, bool) or not isinstance(distance, (int, float)):
-            raise RuntimeError("retrieval distance must be a number")
+            raise RuntimeError("retrieval distance must be a number")  # noqa: TRY004
         if not math.isfinite(distance):
             raise RuntimeError("retrieval distance must be finite")
     return hits

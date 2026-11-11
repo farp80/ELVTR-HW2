@@ -1,6 +1,5 @@
-import importlib.util
 import math
-from pathlib import Path
+
 from shared.classes.ticket_routing_classifier import TicketRoutingClassifier
 
 DEPARTMENTS = (
@@ -19,15 +18,6 @@ DEPARTMENTS = (
 class RoutingService:
     def __init__(self, model_path):
         self._classifier = TicketRoutingClassifier.load(model_path)
-
-    def route_ticket(self, request):
-        body = self.__body(request)
-
-        try:
-            result = self._classifier.predict(body)
-        except Exception as exc:
-            raise RuntimeError("routing classifier failed") from exc
-        return self.__check(result)
 
     def __body(self,request):
         if not isinstance(request, dict) or "body" not in request:

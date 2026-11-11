@@ -1,7 +1,6 @@
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
-
 from retrieval_service import RetrievalService
 
 service = RetrievalService(Path("/app/data/lancedb"), top_k=5)

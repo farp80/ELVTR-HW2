@@ -34,7 +34,7 @@ def _post(url, payload):
 
 def _check(result):
     if not isinstance(result, dict):
-        raise RuntimeError("routing response is missing required fields")
+        raise RuntimeError("routing response is missing required fields")  # noqa: TRY004
     department = result.get("recommended_department")
     scores = result.get("class_scores")
     if department not in DEPARTMENTS or not isinstance(scores, dict):
@@ -48,7 +48,7 @@ def _check(result):
         for score in scores.values()
     ):
         raise RuntimeError("routing scores must be finite numbers")
-    if max(scores, key=scores.get) != department:
+    if max(scores, key=lambda name: scores[name]) != department:
         raise RuntimeError("recommended department is not the top score")
     return {"recommended_department": department, "class_scores": scores}
 
@@ -61,7 +61,7 @@ class RoutingClient:
 
     def route_ticket(self, request):
         if not isinstance(request, dict) or not isinstance(request.get("body"), str):
-            raise ValueError("routing request must include body")
+            raise ValueError("routing request must include body")  # noqa: TRY004
         if not request["body"].strip():
             raise ValueError("routing body must contain text")
         return _check(_post(self._url, {"body": request["body"]}))

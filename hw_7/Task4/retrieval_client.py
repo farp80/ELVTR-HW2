@@ -23,14 +23,14 @@ def _post(url, payload):
 
 def _check(result):
     if not isinstance(result, dict) or not isinstance(result.get("evidence"), list):
-        raise RuntimeError("retrieval did not return a list")
+        raise RuntimeError("retrieval did not return a list")  # noqa: TRY004
     hits = result["evidence"]
     for hit in hits:
         if not isinstance(hit, dict) or any(field not in hit for field in FIELDS):
             raise RuntimeError("retrieval row is missing a required field")
         distance = hit["distance"]
         if isinstance(distance, bool) or not isinstance(distance, (int, float)):
-            raise RuntimeError("retrieval distance must be a number")
+            raise RuntimeError("retrieval distance must be a number")  # noqa: TRY004
         if not math.isfinite(distance):
             raise RuntimeError("retrieval distance must be finite")
     return hits
@@ -44,7 +44,7 @@ class RetrievalClient:
 
     def retrieve_evidence(self, request):
         if not isinstance(request, dict) or not isinstance(request.get("body"), str):
-            raise ValueError("retrieval request must include body")
+            raise ValueError("retrieval request must include body")  # noqa: TRY004
         if not request["body"].strip():
             raise ValueError("retrieval body must contain text")
         return {"evidence": _check(_post(self._url, {"body": request["body"]}))}

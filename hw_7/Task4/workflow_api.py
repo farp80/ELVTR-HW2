@@ -1,7 +1,6 @@
 import os
 
 from fastapi import FastAPI
-
 from workflow import TicketWorkflow
 
 workflow = TicketWorkflow(os.environ.get("LOG_PATH", "/logs/workflow_trace.jsonl"))

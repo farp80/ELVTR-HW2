@@ -8,7 +8,6 @@ from fastembed import TextEmbedding
 from huggingface_hub import snapshot_download
 from huggingface_hub.errors import LocalEntryNotFoundError
 
-
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 MODEL_REPOSITORY = "qdrant/bge-small-en-v1.5-onnx-q"
 MODEL_REVISION = "52398278842ec682c6f32300af41344b1c0b0bb2"
@@ -34,14 +33,14 @@ class VectorStore:
             model_path = snapshot_download(
                 repo_id=MODEL_REPOSITORY,
                 revision=MODEL_REVISION,
-                allow_patterns=MODEL_FILES,
+                allow_patterns=list(MODEL_FILES),
                 local_files_only=True,
             )
         except LocalEntryNotFoundError:
             model_path = snapshot_download(
                 repo_id=MODEL_REPOSITORY,
                 revision=MODEL_REVISION,
-                allow_patterns=MODEL_FILES,
+                allow_patterns=list(MODEL_FILES),
             )
         self._embedder = TextEmbedding(
             model_name=MODEL_NAME,
@@ -99,10 +98,7 @@ class VectorStore:
         table = self._database.open_table(TABLE_NAME)
         # Cosine distance is smaller for chunks that are more similar to the query.
         matches = (
-            table.search(query_vector)
-            .distance_type("cosine")
-            .limit(top_k)
-            .to_list()
+            table.search(query_vector).distance_type("cosine").limit(top_k).to_list()  # pyright: ignore[reportAttributeAccessIssue]
         )
         return [
             {

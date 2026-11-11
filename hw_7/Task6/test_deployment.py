@@ -73,7 +73,7 @@ def test_ticket_28763():
         and math.isfinite(score)
         for score in scores.values()
     )
-    assert max(scores, key=scores.get) == result["recommended_department"]
+    assert max(scores, key=lambda name: scores[name]) == result["recommended_department"]
 
     summary = result["ticket_summary"]
     assert isinstance(summary, dict) and set(summary) == SUMMARY_FIELDS
