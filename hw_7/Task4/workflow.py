@@ -7,6 +7,7 @@ from uuid import uuid4
 from llm_service import LLMClient
 from retrieval_client import RetrievalClient
 from routing_client import DEPARTMENTS, RoutingClient
+
 from shared.classes.indexed_trace_logger import IndexedTraceLogger
 
 MODEL = "qwen2.5:1.5b-instruct-q4_K_M"
@@ -110,7 +111,9 @@ def _package(
         "ticket_id": ticket_id,
         "workflow_record_id": record_id,
         "terminal_status": status,
-        "recommended_department": route.get("recommended_department") if ready else None,
+        "recommended_department": route.get("recommended_department")
+        if ready
+        else None,
         "class_scores": route.get("class_scores") if ready else None,
         "ticket_body": body if ready else None,
         "ticket_summary": summary if ready else None,
