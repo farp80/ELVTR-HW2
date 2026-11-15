@@ -21,7 +21,7 @@ Senior Software Engineer
 ## 5. Uncertainty ##
 
 ## 6. Input ##
-C:\Users\frosell\Downloads\ELVTR-HW2\hw_7\WEEK_7_ASSIGNMENT.md
+C:\Users\frosell\Downloads\ELVTR-HW2\hw_8\Fidel Alejandro Rosell Perez - WEEK_8_ASSIGNMENT.md
 
 ## 7. Output ##
  - All files inside the folders MUST be .md
