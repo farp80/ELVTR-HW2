@@ -1,93 +1,8 @@
-# Task 7 — Test traces and metrics separately
+"""Check Task 6 traces and metrics against the running app.
 
-## Goal
+Start the Task 6 app first, then run:  python test_monitoring.py
+"""
 
-One test file runs two tests against the running app from Task 6.
-
-The trace test sends one ticket, then reads its traces. The events must be in the right order and carry the same `trace_id` and a UTC timestamp. They must not contain the ticket text. An unknown id must return `[]`.
-
-The metric test sends three tickets. For each metric, it downloads every saved result and every trace, works out the expected value with the same formula as Task 6, and compares it to the API. It then repeats this with `start` and `end` chosen to leave out the earliest timestamp.
-
-## Step 1 — Create the folder and the test file
-
-Create `hw_8\Task7`. Create `hw_8\Task7\test_monitoring.py` and paste the code from the Logic section below.
-
-The test imports `metrics.py` from `hw_8\Task6`, so the expected values use the exact formulas the API uses. It reads ticket text from `hw_2\Fidel Alejandro Rosell Perez - support_tickets.csv`.
-
-## Step 2 — Install requests
-
-Run this once in PowerShell. It installs the HTTP library the test uses:
-
-```text
-python -m pip install requests==2.34.2
-```
-
-## Step 3 — Start the app from Task 6
-
-```text
-cd C:\Users\frosell\Downloads\ELVTR-HW2\hw_8\Task6
-docker compose up --build -d
-docker compose ps
-```
-
-Wait until all four services show `healthy`.
-
-## Step 4 — Run the tests
-
-```text
-cd C:\Users\frosell\Downloads\ELVTR-HW2\hw_8\Task7
-python test_monitoring.py
-```
-
-A passing run prints four lines:
-
-```text
-trace capture: passed
-median_workflow_ms: all=... window=... passed
-workflow_failure_rate: all=... window=... passed
-routing_review_rate: all=... window=... passed
-```
-
-Any failed check stops the run with an `AssertionError` that names the check. The model takes time on each ticket, so the run can take a few minutes.
-
-## Step 5 — What the trace test checks
-
-`test_trace_capture` checks these points in order:
-
-1. The first event is `workflow started`.
-2. The last event is `workflow` with `summary_ready_for_review`.
-3. The event before it is `routing_review`, and its flag matches the result.
-4. Routing, retrieval, and the LLM each start before they complete.
-5. Retrieval completes before the LLM starts.
-6. Routing completes before the review step.
-7. Every event has this `trace_id` and a valid UTC timestamp.
-8. No event has a private field name, and no event contains the ticket text.
-9. An unknown trace id returns an empty array.
-
-## Step 6 — What the metric test checks
-
-`check_metric` runs once per metric:
-
-1. It reads the metric with no window.
-2. It downloads all saved results from `GET /tickets`, and the traces of each result from `GET /ops/traces`. Tickets from earlier tasks are included.
-3. It computes the expected value and compares it to the API value.
-4. It sorts the timestamps this metric uses. `start` is the second one and `end` is the last one, so the earliest one is left out.
-5. It reads the metric with that window, computes the expected value for the same window, and compares again.
-
-`same` treats two `null` values as equal. It allows a rounding difference of 0.000000001.
-
-## Step 7 — Stop the app
-
-```text
-cd C:\Users\frosell\Downloads\ELVTR-HW2\hw_8\Task6
-docker compose down
-```
-
-The `record-store` and `workflow-traces` volumes keep their data.
-
-## Logic
-
-```python
 import csv
 import math
 import os
@@ -99,12 +14,17 @@ import requests
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "Task6"))
 
-from metrics import median_workflow_ms, parse_time, routing_review_rate, workflow_failure_rate
+from metrics import (  # noqa: E402
+    median_workflow_ms,
+    parse_time,
+    routing_review_rate,
+    workflow_failure_rate,
+)
 
 ROOT = HERE.parents[1]
 DATASET = ROOT / "hw_2" / "Fidel Alejandro Rosell Perez - support_tickets.csv"
 BASE = os.environ.get("WORKFLOW_URL", "http://localhost:8000")
-PRIVATE = {
+PRIVATE_FIELDS = {
     "api_key",
     "body",
     "content",
@@ -130,6 +50,7 @@ FORMULAS = {
 
 
 def load_tickets(limit):
+    """Return the first tickets that have a body."""
     rows = []
     with DATASET.open(newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
@@ -151,7 +72,11 @@ def post_ticket(ticket_id, body):
 
 
 def get_traces(trace_id):
-    response = requests.get(f"{BASE}/ops/traces", params={"trace_id": trace_id}, timeout=30)
+    response = requests.get(
+        f"{BASE}/ops/traces",
+        params={"trace_id": trace_id},
+        timeout=30,
+    )
     response.raise_for_status()
     return response.json()
 
@@ -177,7 +102,7 @@ def contains_text(value, text):
     return False
 
 
-def position(events, service, name):
+def find_event(events, service, name):
     hits = [
         index
         for index, event in enumerate(events)
@@ -188,6 +113,7 @@ def position(events, service, name):
 
 
 def test_trace_capture():
+    """Send one ticket and check that its trace events were saved in order."""
     ticket_id, body = load_tickets(1)[0]
     result = post_ticket(ticket_id, body)
     assert result["terminal_status"] == "summary_ready_for_review"
@@ -200,12 +126,14 @@ def test_trace_capture():
     assert events[-2]["service"] == "routing_review"
     assert events[-2]["requires_routing_review"] == result["requires_routing_review"]
     for service in ("routing", "retrieval", "llm"):
-        assert position(events, service, "started") < position(events, service, "completed")
-    assert position(events, "retrieval", "completed") < position(events, "llm", "started")
-    assert position(events, "routing", "completed") < position(events, "routing_review", "completed")
+        assert find_event(events, service, "started") < find_event(events, service, "completed")
+    assert find_event(events, "retrieval", "completed") < find_event(events, "llm", "started")
+    assert find_event(events, "routing", "completed") < find_event(
+        events, "routing_review", "completed"
+    )
     assert all(event["trace_id"] == trace_id for event in events)
     assert all(parse_time(event["timestamp"]) for event in events)
-    assert all(PRIVATE.isdisjoint(event) for event in events)
+    assert all(PRIVATE_FIELDS.isdisjoint(event) for event in events)
     assert not any(contains_text(event, body) for event in events)
 
     assert get_traces("00000000-0000-4000-8000-000000000000") == []
@@ -213,6 +141,7 @@ def test_trace_capture():
 
 
 def saved_data():
+    """Download every saved ticket and the trace events for each one."""
     response = requests.get(f"{BASE}/tickets", timeout=30)
     response.raise_for_status()
     records = response.json()
@@ -230,6 +159,7 @@ def same(actual, expected):
 
 
 def used_timestamps(name, records, events):
+    """Return the times this metric actually counts."""
     if name == "median_workflow_ms":
         return [
             event["timestamp"]
@@ -269,13 +199,14 @@ def check_metric(name):
 
 
 def test_metrics():
+    """Send three tickets, then check each metric with and without a time window."""
     for ticket_id, body in load_tickets(3):
         post_ticket(ticket_id, body)
-    for name in FORMULAS:
-        check_metric(name)
+    check_metric("median_workflow_ms")
+    check_metric("workflow_failure_rate")
+    check_metric("routing_review_rate")
 
 
 if __name__ == "__main__":
     test_trace_capture()
     test_metrics()
-```

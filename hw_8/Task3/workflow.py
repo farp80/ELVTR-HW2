@@ -114,7 +114,9 @@ def _package(
         "ticket_id": ticket_id,
         "workflow_record_id": record_id,
         "terminal_status": status,
-        "recommended_department": route.get("recommended_department") if ready else None,
+        "recommended_department": route.get("recommended_department")
+        if ready
+        else None,
         "class_scores": route.get("class_scores") if ready else None,
         "ticket_body": body if ready else None,
         "ticket_summary": summary if ready else None,
@@ -125,13 +127,14 @@ def _package(
         "human_reviewed_route": None,
     }
 
+
 class TicketWorkflow:
     def __init__(self, log_path):
         self._routing = RoutingClient(_required_url("ROUTER_URL"))
         self._retrieval = RetrievalClient(_required_url("RETRIEVAL_URL"))
         self._llm = LLMClient(_required_url("OLLAMA_URL"))
         self._logger = IndexedTraceLogger(log_path)
-        self._store = WorkflowRecordStore()
+        self.store = WorkflowRecordStore()
 
     def _record(self, trace_id, **fields):
         self._logger.record(trace_id, **fields)
@@ -230,8 +233,8 @@ class TicketWorkflow:
             raise RuntimeError("routing department is not allowed")
         return route, summary, evidence
 
-    def process_ticket(self,request):
-        self._store.save_record(self._process(request))
+    def process_ticket(self, request):
+        return self.store.save_record(self._process(request))
 
     def _process(self, request):
         record_id = str(uuid4())
