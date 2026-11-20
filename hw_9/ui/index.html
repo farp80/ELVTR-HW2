@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Support Ticket Copilot</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20261115-1">
+    <script src="/static/app.js?v=20261115-1" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Local support operations</p>
+        <h1>Support Ticket Copilot</h1>
+      </div>
+      <div id="health-status" class="health-status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Checking service</span>
+      </div>
+    </header>
+
+    <nav class="tab-list" aria-label="Application views">
+      <button class="tab is-active" type="button" data-view="process" aria-current="page">
+        Process Ticket
+      </button>
+      <button class="tab" type="button" data-view="records">Workflow Records</button>
+      <button class="tab" type="button" data-view="operations">Operations</button>
+    </nav>
+
+    <div id="app-notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <main>
+      <section id="view-process" class="view is-active" data-view-panel="process">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">Ticket workflow</p>
+            <h2>Process a support ticket</h2>
+            <p>Route the ticket, retrieve supporting knowledge, and prepare a reviewable summary.</p>
+          </div>
+        </div>
+
+        <div class="two-column">
+          <form id="ticket-form" class="panel form-panel">
+            <div class="field">
+              <label for="ticket-id">Ticket ID</label>
+              <input id="ticket-id" name="ticket_id" type="number" min="1" step="1" required>
+              <p id="ticket-id-error" class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="ticket-body">Ticket body</label>
+              <textarea id="ticket-body" name="Body" rows="11" required
+                placeholder="Describe the customer's issue and request."></textarea>
+              <p id="ticket-body-error" class="field-error" aria-live="polite"></p>
+            </div>
+            <button id="process-button" class="button button-primary" type="submit">
+              Process ticket
+            </button>
+          </form>
+
+          <section class="panel result-panel" aria-labelledby="latest-result-heading">
+            <div class="panel-heading">
+              <h3 id="latest-result-heading">Latest result</h3>
+            </div>
+            <div id="process-result" class="empty-state">
+              Submit a ticket to see its workflow result.
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="view-records" class="view" data-view-panel="records" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">Persistent workflow state</p>
+            <h2>Workflow records</h2>
+            <p>Find processed tickets, inspect the original submitted text, and manually assign departments.</p>
+          </div>
+          <button id="refresh-records" class="button button-secondary" type="button">
+            Refresh records
+          </button>
+        </div>
+
+        <form id="record-filters" class="panel filter-bar">
+          <div class="field">
+            <label for="review-filter">Routing review</label>
+            <select id="review-filter" name="requires_routing_review">
+              <option value="">All records</option>
+              <option value="true">Requires review</option>
+              <option value="false">Does not require review</option>
+            </select>
+          </div>
+          <div class="field field-grow">
+            <label for="department-filter">Assigned department</label>
+            <select id="department-filter" name="department">
+              <option value="">All departments</option>
+            </select>
+          </div>
+          <button class="button button-primary" type="submit">Apply filters</button>
+          <button id="clear-record-filters" class="button button-quiet" type="button">
+            Clear
+          </button>
+        </form>
+
+        <div class="records-layout">
+          <section class="panel" aria-labelledby="records-list-heading">
+            <div class="panel-heading">
+              <h3 id="records-list-heading">Saved records</h3>
+              <span id="record-count" class="muted"></span>
+            </div>
+            <div id="records-list" class="empty-state">Loading records...</div>
+          </section>
+
+          <section class="panel detail-panel" aria-labelledby="record-detail-heading">
+            <div class="panel-heading">
+              <h3 id="record-detail-heading">Record details</h3>
+            </div>
+            <div id="record-detail" class="empty-state">
+              Select a workflow record to inspect it.
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="view-operations" class="view" data-view-panel="operations" hidden>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">Privacy-safe monitoring</p>
+            <h2>Operations</h2>
+            <p>Review aggregate workflow health and inspect recorded traces by trace ID.</p>
+          </div>
+        </div>
+
+        <section class="panel" aria-labelledby="metrics-heading">
+          <div class="panel-heading">
+            <h3 id="metrics-heading">Operational metrics</h3>
+          </div>
+          <p class="helper-text">Each tile shows the complete JSON returned by its metric endpoint, without inferred units.</p>
+          <form id="metric-filters" class="filter-bar">
+            <div class="field">
+              <label for="metric-start">Start time</label>
+              <input id="metric-start" name="start" type="datetime-local">
+            </div>
+            <div class="field">
+              <label for="metric-end">End time</label>
+              <input id="metric-end" name="end" type="datetime-local">
+            </div>
+            <button class="button button-primary" type="submit">Refresh metrics</button>
+            <button id="clear-metric-bounds" class="button button-quiet" type="button">
+              Clear bounds
+            </button>
+          </form>
+          <p id="metric-error" class="field-error" role="alert"></p>
+          <div id="metric-cards" class="metric-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="panel trace-panel" aria-labelledby="trace-heading">
+          <div class="panel-heading">
+            <h3 id="trace-heading">Trace lookup</h3>
+          </div>
+          <form id="trace-form" class="filter-bar">
+            <div class="field field-grow">
+              <label for="trace-id">Trace ID</label>
+              <input id="trace-id" name="trace_id" type="text" required
+                placeholder="Paste a trace ID from a workflow result">
+            </div>
+            <button class="button button-primary" type="submit">Inspect trace</button>
+          </form>
+          <div id="trace-results" aria-live="polite">
+            <div class="empty-state">Enter a trace ID to inspect its component timeline.</div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
